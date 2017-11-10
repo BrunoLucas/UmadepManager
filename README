@@ -1,0 +1,18 @@
+ionic cordova plugin add cordova-plugin-facebook4 --variable APP_ID="261686487619825" --variable APP_NAME="umadepManager"
+
+ionic cordova plugin add cordova-plugin-firebase
+
+$ ionic cordova plugin add cordova-plugin-googlemaps --variable API_KEY_FOR_ANDROID="AIzaSyCMBidBl4FeZM3tdZE4sH249cDY4TFJxcE" 
+
+ionic cordova plugin add cordova-plugin-camera
+
+ionic cordova plugin add cordova-plugin-geolocation
+
+ionic cordova plugin add cordova-plugin-x-toast
+
+npm install --save @ionic-native/facebook
+
+npm install promise-polyfill --save-exact
+
+
+npm install
