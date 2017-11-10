@@ -1,0 +1,46 @@
+<ion-menu [content]="content">
+
+  <ion-toolbar color="primary">
+
+    <ion-card-header>
+      <ion-item menuClose (click)="openPageInicial()">
+        <ion-avatar color="primary"> 
+          <img color="primary" src="assets/img/icon.png">
+        </ion-avatar>
+        Eventos XPTO
+      </ion-item>
+    </ion-card-header>
+  </ion-toolbar>
+
+  <ion-content>
+
+    <ion-list>
+      <button  menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">        
+          <ion-icon [name] ="p.img1" ></ion-icon> {{p.title}}
+      </button>
+    </ion-list>
+
+    <ion-list>
+      <ion-list-header>
+        Membros
+      </ion-list-header>
+      <button  ion-item menuClose *ngFor="let p of pagesPeople" (click)="openPage(p)">
+        <ion-icon [name]="p.img1"  ></ion-icon> {{p.title}}
+      </button>
+    </ion-list>
+
+    <ion-list>
+      <ion-list-header>
+        Eventos Xpto
+      </ion-list-header>
+      <button  ion-item menuClose *ngFor="let p of pagesSystem" (click)="openPage(p)">
+       <ion-icon [name]="p.img1"  ></ion-icon> {{p.title}}
+      </button>
+    </ion-list>
+
+  </ion-content>
+
+</ion-menu>
+
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

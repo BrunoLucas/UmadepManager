@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-segment color="light">
+      <ion-segment-button>
+        Jovens reponsáveis pela tarefa
+      </ion-segment-button>
+    </ion-segment>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <form #novoJovemForm="ngForm" novalidate color="primary">
+
+    <ion-item>
+      <ion-label floating color="primary">Nome</ion-label>
+      <ion-input [(ngModel)]='jovemModel.nome' name='nome' type="text" #username='ngModel' spellcheck="false" autocapitalize="off"
+        required>
+      </ion-input>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label color="primary">Igreja</ion-label>
+      <ion-select [(ngModel)]="jovemModel.congregacao" name='congregacao'>
+            <ion-option *ngFor="let congregacao of congregacoes" [value]="congregacao.key" >{{congregacao.nome}}</ion-option>
+      </ion-select>
+    </ion-item>
+
+
+
+    <button block color="primary" (click)="consultarJovem()">Buscar</button>
+
+
+    <ion-list>
+      <button ion-item *ngFor="let jovem of listaDeJovens">   
+
+    <ion-label>{{jovem.nome}}</ion-label>
+    <ion-checkbox [(ngModel)]="jovem.selecionado" [ngModelOptions]="{standalone: true}"> </ion-checkbox>
+
+    </button>
+    </ion-list>
+
+
+
+  </form>
+
+</ion-content>
+
+<button fab fab-bottom fab-right (click)="adicionarListaJovens()" danger style="z-index:100">
+<ion-icon name="add"></ion-icon>
+</button>

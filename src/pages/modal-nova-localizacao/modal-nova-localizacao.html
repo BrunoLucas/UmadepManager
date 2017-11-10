@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      Endereço
+    </ion-title>
+    <ion-buttons end>
+      <button (click)="salvarLocalizacao()"><ion-icon name="add"></ion-icon>Salvar</button>
+    </ion-buttons>  
+  </ion-navbar>
+</ion-header>
+ 
+ <ion-content>
+     <input (focus)="clearTo()" id="enderecoBuscado" name="enderecoBuscado" type="text"  class="controls"
+    placeholder="Enter location" [(ngModel)]="enderecoBuscado">
+ </ion-content>
+<ion-content>
+  
+  <div #map id="map"></div>  
+</ion-content>

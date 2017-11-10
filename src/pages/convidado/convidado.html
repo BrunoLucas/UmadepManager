@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-segment light>
+      <ion-segment-button >
+        Convidados
+      </ion-segment-button>
+    </ion-segment>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+
+  <ion-list>
+    <button ion-item *ngFor="let item of items" (click)="detalheConvidado(item.key)">
+      
+        <ion-avatar item-left>
+      <img [src]="item.foto">
+    </ion-avatar>
+      <!--<ion-icon [name]="item.icon" item-left  ></ion-icon>-->
+            {{item.nome}}
+      <div class="item-note" item-right >
+           
+      </div>
+    </button>
+
+  </ion-list>
+
+
+
+
+</ion-content>
+
+    <button fab fab-bottom fab-right (click) = "addConvidado()" danger style="z-index:100"><ion-icon name="add"></ion-icon></button>
+

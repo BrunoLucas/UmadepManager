@@ -1,0 +1,54 @@
+
+
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Umadep Manager</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content scroll="false">
+
+  <section class="home-container">
+
+
+
+    <div class="row icon-row">
+
+      <div class="col text-center" (click) = "abrirPaginaEventos()">
+         <img src="assets/img/img1.png">
+          <h3 class="item-text-center-vertical">Eventos</h3>
+      </div>
+
+
+      <div class="col text-center" (click) = "abrirPaginaConvidados()">
+       <img src="assets/img/img13.png">
+          <h3 class="item-text-center-vertical">Convidados</h3>
+      </div>
+
+    </div>
+
+
+    <div class="row icon-row">
+
+      <div class="col text-center" (click) = "abrirPaginaMembros()" >
+         <img src="assets/img/img11.png">
+          <h3 class="item-text-center-vertical">Jovens</h3>
+      </div>
+
+
+      <div class="col text-center" (click) = "abrirPaginaCongregacoes()">
+        <img src="assets/img/img8.png">
+          <h3 class="item-text-center-vertical">Congregações</h3>
+      </div>
+
+    </div>
+
+
+
+  </section>
+
+</ion-content>

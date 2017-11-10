@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title light>Convidado</ion-title>
+    <ion-buttons left>
+      <button  (click)="goBack()">
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content color="primary"> 
+
+
+
+
+ <ion-item color="primary">
+    <ion-avatar item-left>
+      <img src="{{convidadoModel.foto}}">
+    </ion-avatar>
+    <h2>{{convidadoModel.nome}}</h2>
+    <p>{{convidadoModel.telefone}}</p>
+    <p>{{convidadoModel.email}}</p>
+
+  </ion-item>
+
+  <img src="{{convidadoModel.foto}}" height="512" width="512">
+  <!--<img [src]="base64ImageTela" *ngIf="base64Image" />-->
+
+  <ion-card-content color="primary">
+    <p>Congregação: {{convidadoModel.congregacao}}</p>
+  </ion-card-content>
+  
+  <ion-card-content color="primary">
+    <p>Rua: {{convidadoModel.rua}}</p>
+    <p>Cidade: {{convidadoModel.cidade}}</p>
+    <p>Estado: {{convidadoModel.estado}}</p>
+  </ion-card-content>
+  
+
+</ion-content>
+    <button  fab fab-bottom fab-right (click) = "editarConvidado()" danger class="fixed" style="z-index:100">  <ion-icon name="create"></ion-icon>
+</button>

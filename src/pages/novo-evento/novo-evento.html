@@ -1,0 +1,136 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button  menuToggle secondary>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-segment [(ngModel)]="opcaoEventoModel" secondary>
+      <ion-segment-button value="consultarEvento" secondary>
+        Eventos
+      </ion-segment-button>
+      <!--<ion-segment-button value="novoEvento">
+        Novo
+      </ion-segment-button>-->
+    </ion-segment>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+
+
+    <form #novoEventoForm="ngForm" novalidate color="primary">
+      <ion-item>
+        <ion-label floating color="primary">Nome</ion-label>
+        <ion-input [(ngModel)]='eventoModel.nome' name='nome' type="text" #username='ngModel' spellcheck="false" autocapitalize="off"
+          required>
+        </ion-input>
+      </ion-item>
+
+      <button  full   color="primary"  (click)="addLocalizacao()">
+        <ion-icon name="locate"></ion-icon>
+        Localização
+      </button>
+
+    <!--<ion-card *ngIf="eventoModel.endereco.rua != undefined && eventoModel.endereco.rua != null">
+            <ion-card-content>
+                      <ion-label  color="primary">Rua: {{eventoModel.endereco.rua}}</ion-label>
+                      <ion-label  color="primary">Cidade: {{eventoModel.endereco.cidade}}</ion-label>
+                      <ion-label  color="primary">Estado: {{eventoModel.endereco.estado}}</ion-label>                          
+            </ion-card-content>
+            <ion-label  color="primary">Número:</ion-label>
+                      <ion-input [(ngModel)]='eventoModel.endereco.numero' name='numero' type="number" #numero='ngModel' spellcheck="false" autocapitalize="off"
+                        required>
+                     </ion-input> 
+                      <ion-label  color="primary">Complemento:</ion-label>
+                      <ion-input [(ngModel)]='eventoModel.endereco.complemento' name='complemento' type="text"
+                       #complemento='ngModel' spellcheck="false" autocapitalize="off"
+                      >
+                     </ion-input>                 
+    </ion-card>-->
+      <ion-item *ngIf="eventoModel.endereco.rua != undefined && eventoModel.endereco.rua != null">
+            <ion-label floating color="primary" >Rua</ion-label>
+            <ion-input [(ngModel)]='eventoModel.endereco.rua' name='rua' type="text" #rua='ngModel' spellcheck="false" autocapitalize="off"
+              required>
+            </ion-input>
+      </ion-item>
+       <ion-item *ngIf="eventoModel.endereco.cidade != undefined && eventoModel.endereco.cidade != null">
+            <ion-label floating color="primary" >Cidade</ion-label>
+            <ion-input [(ngModel)]='eventoModel.endereco.cidade' name='cidade' type="text" #cidade='ngModel' spellcheck="false" autocapitalize="off"
+              required>
+            </ion-input>
+      </ion-item>
+
+       <ion-item *ngIf="eventoModel.endereco.estado != undefined && eventoModel.endereco.estado != null">
+            <ion-label floating color="primary" >Estado</ion-label>
+            <ion-input [(ngModel)]='eventoModel.endereco.estado' name='estado' type="text" #estado='ngModel' spellcheck="false" autocapitalize="off"
+              required>
+            </ion-input>
+      </ion-item>
+
+       <ion-item *ngIf="eventoModel.endereco.rua != undefined && eventoModel.endereco.rua != null">
+            <ion-label floating color="primary" >Número</ion-label>
+            <ion-input [(ngModel)]='eventoModel.endereco.numero' name='numero' type="number" #numero='ngModel' spellcheck="false" autocapitalize="off"
+              required>
+            </ion-input>
+      </ion-item>
+
+       <ion-item *ngIf="eventoModel.endereco.rua != undefined && eventoModel.endereco.rua != null">
+            <ion-label floating color="primary" >Complemento</ion-label>
+            <ion-input [(ngModel)]='eventoModel.endereco.complemento' name='complemento' type="text" #complemento='ngModel' spellcheck="false" autocapitalize="off"
+              >
+            </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating color="primary">Data</ion-label>
+        <ion-input [(ngModel)]='eventoModel.data' name='data' type="date" #username='ngModel' spellcheck="false" autocapitalize="off"
+           required>
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating color="primary">Horario</ion-label>
+        <ion-input [(ngModel)]='eventoModel.horario' name='horario' type="time" #username='ngModel' spellcheck="false" autocapitalize="off"
+          required>
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating color="primary">Descricao</ion-label>
+        <ion-input [(ngModel)]='eventoModel.descricao' name='descricao' type="text" #username='ngModel' spellcheck="false" autocapitalize="off"
+          required>
+        </ion-input>
+      </ion-item>
+
+      <button ion-button full   color="primary"  (click)="abrirModalOpcaoFoto()">
+        <ion-icon name="camera"></ion-icon>
+        Câmera
+      </button>
+
+    <ion-card  *ngIf = 'base64ImageTela != undefined'>
+         <ion-card-content>
+                <img [src]="base64ImageTela" *ngIf="base64Image" />
+         </ion-card-content>
+    </ion-card>
+
+
+
+  <ion-row responsive-sm>
+        <ion-col>
+          <button [disabled]="!novoEventoForm.valid"  (click)='salvarEvento(eventoModel)' type='submit' color="primary" block>Salvar</button>
+        </ion-col>
+     
+      </ion-row>
+
+      <p [hidden]="username.valid || submitted == false" danger padding-left>
+        Username is required
+      </p>
+
+
+    </form>
+            <!--<button fab fab-bottom fab-right (click)="addTarefas()" danger><ion-icon name="add"></ion-icon></button>-->
+
+  <div *ngIf="selectedItem" padding>
+    You navigated here from <b>{{selectedItem.title}}</b>
+  </div>
+</ion-content>

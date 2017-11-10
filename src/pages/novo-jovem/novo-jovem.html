@@ -1,0 +1,138 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <!--<ion-buttons start left>
+            <button secondary (click)="voltar()">
+       <ion-icon name="arrow-back"></ion-icon>
+    </button>
+        </ion-buttons>-->
+        <ion-title>Novo Jovem</ion-title>
+
+        <ion-buttons end>
+            <button secondary (click)="salvarJovem()">
+         Salvar<ion-icon name="cloud-done"></ion-icon>
+    </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+
+
+    <form #novoJovemForm="ngForm" novalidate color="primary">
+
+        <ion-item>
+            <ion-label floating color="primary">Nome</ion-label>
+            <ion-input [(ngModel)]='jovemModel.nome' name='nome' type="text" #username='ngModel' spellcheck="false" autocapitalize="off"
+                required>
+            </ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label floating color="primary">Data</ion-label>
+            <ion-input [(ngModel)]="jovemModel.nascimento" name="nascimento" type="date" #username="ngModel" spellcheck="false" autocapitalize="off"
+                required>
+            </ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label floating color="primary">Telefone</ion-label>
+            <ion-input [(ngModel)]='jovemModel.telefone' name='telefone' type="tel" #username='ngModel' spellcheck="false" autocapitalize="off"
+                required>
+            </ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label floating color="primary">E-mail</ion-label>
+            <ion-input [(ngModel)]='jovemModel.email' name='email' type="email" #username='ngModel' spellcheck="false" autocapitalize="off"
+                required>
+            </ion-input>
+        </ion-item>
+
+        <!--<ion-item>
+            <ion-label>Músico</ion-label>
+            <ion-toggle [(ngModel)]="jovemModel.musico"></ion-toggle>
+        </ion-item>-->
+
+        <ion-item>
+            <ion-label color="primary">Igreja</ion-label>
+            <ion-select [(ngModel)]="jovemModel.congregacao" name='congregacao'>
+                <ion-option *ngFor="let congregacao of congregacoes" [value]="congregacao.key">{{congregacao.nome}}</ion-option>
+            </ion-select>
+        </ion-item>
+
+        <button full color="primary" (click)="addLocalizacao()">
+        <ion-icon name="locate"></ion-icon>
+        Localização
+      </button>
+
+        <!--<ion-card *ngIf="jovemModel.endereco.rua != undefined && jovemModel.endereco.rua != null">
+            <ion-card-content>
+                      <ion-label  color="primary">Rua: {{jovemModel.endereco.rua}}</ion-label>
+                      <ion-label  color="primary">Cidade: {{jovemModel.endereco.cidade}}</ion-label>
+                      <ion-label  color="primary">Estado: {{jovemModel.endereco.estado}}</ion-label>
+            </ion-card-content>
+    </ion-card>-->
+
+        <ion-item *ngIf="jovemModel.endereco.rua != undefined && jovemModel.endereco.rua != null">
+            <ion-label floating color="primary">Rua</ion-label>
+            <ion-input [(ngModel)]='jovemModel.endereco.rua' name='rua' type="text" #rua='ngModel' spellcheck="false" autocapitalize="off"
+                required>
+            </ion-input>
+        </ion-item>
+        <ion-item *ngIf="jovemModel.endereco.cidade != undefined && jovemModel.endereco.cidade != null">
+            <ion-label floating color="primary">Cidade</ion-label>
+            <ion-input [(ngModel)]='jovemModel.endereco.cidade' name='cidade' type="text" #cidade='ngModel' spellcheck="false" autocapitalize="off"
+                required>
+            </ion-input>
+        </ion-item>
+
+        <ion-item *ngIf="jovemModel.endereco.estado != undefined && jovemModel.endereco.estado != null">
+            <ion-label floating color="primary">Estado</ion-label>
+            <ion-input [(ngModel)]='jovemModel.endereco.estado' name='estado' type="text" #estado='ngModel' spellcheck="false" autocapitalize="off"
+                required>
+            </ion-input>
+        </ion-item>
+
+        <ion-item *ngIf="jovemModel.endereco.rua != undefined && jovemModel.endereco.rua != null">
+            <ion-label floating color="primary">Número</ion-label>
+            <ion-input [(ngModel)]='jovemModel.endereco.numero' name='numero' type="number" #numero='ngModel' spellcheck="false" autocapitalize="off"
+                required>
+            </ion-input>
+        </ion-item>
+
+        <ion-item *ngIf="jovemModel.endereco.rua != undefined && jovemModel.endereco.rua != null">
+            <ion-label floating color="primary">Complemento</ion-label>
+            <ion-input [(ngModel)]='jovemModel.endereco.complemento' name='complemento' type="text" #complemento='ngModel' spellcheck="false"
+                autocapitalize="off">
+            </ion-input>
+        </ion-item>
+
+        <button ion-button full color="primary" (click)="abrirModalOpcaoFoto()"> <!--takePicture()-->
+        <ion-icon name="camera"></ion-icon>
+        Câmera
+      </button>
+
+        <ion-card *ngIf="base64Image">
+            <ion-card-content>
+                <img [src]="base64ImageTela" *ngIf="base64Image" />
+            </ion-card-content>
+        </ion-card>
+
+
+
+
+        <ion-row responsive-sm>
+            <ion-col>
+                <button [disabled]="!novoJovemForm.valid" (click)='salvarJovem()' type='submit' color="primary" block>Salvar</button>
+            </ion-col>
+
+        </ion-row>
+
+        <p [hidden]="username.valid || submitted == false" danger padding-left>
+            Username is required
+        </p>
+
+
+    </form>
+</ion-content>

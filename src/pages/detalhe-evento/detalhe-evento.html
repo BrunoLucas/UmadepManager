@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title light>Evento</ion-title>
+    <ion-buttons left>
+      <button  (click)="goBack()">
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+
+
+
+ <ion-item>
+    <ion-avatar item-left>
+      <img src="{{evento.foto}}">
+    </ion-avatar>
+    <h2>{{evento.nome}}</h2>
+    <p>{{evento.data}}</p>
+    <p>{{evento.horario}}</p>
+
+  </ion-item>
+
+  <!--<img src="img/bear.jpg">-->
+  <img src="{{evento.foto}}"  height="512" width="512">
+  
+
+  <ion-card-content>
+    <p>{{evento.descricao}}</p>
+  </ion-card-content>
+  
+  <ion-card-content color="primary">
+    <p>Rua: {{evento.rua}}</p>
+    <p>Cidade: {{evento.cidade}}</p>
+    <p>Estado: {{evento.estado}}</p>
+  </ion-card-content>
+  
+  <h3>Tarefas</h3>
+<ion-list  *ngFor="let tarefa of tarefas">
+  <ion-item (click)="detalheTarefa(tarefa.key)" >
+    <ion-avatar item-left>
+      <img src="{{evento.foto}}">
+    </ion-avatar>
+    <h2>{{tarefa.nome}}</h2>
+    <!--<h3>Don't Know What To Do!</h3>-->
+    <p>{{tarefa.descricao}}</p>
+  </ion-item>
+  
+</ion-list>
+
+</ion-content>
+
+
+<button  fab fab-bottom fab-right (click)="addTarefas()" danger style="z-index:100"><ion-icon name="add"></ion-icon></button>

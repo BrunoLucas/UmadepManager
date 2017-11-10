@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button menuToggle color="primary">
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-segment [(ngModel)]="opcaoEventoModel" light>
+      <ion-segment-button value="consultarEvento" light>
+        Eventos
+      </ion-segment-button>
+      <!--<ion-segment-button value="novoEvento">
+        Novo
+      </ion-segment-button>-->
+    </ion-segment>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+
+  <ion-list *ngIf="opcaoEventoModel == 'consultarEvento'" color="primary">
+    <button ion-item *ngFor="let item of items"  (click)="detalheEvento(item.key)" color="primary">
+           <ion-avatar item-left>
+      <!--<img [src]="item.foto">-->
+    </ion-avatar>
+      <ion-icon [name]="item.icon" item-left color="primary"></ion-icon>
+
+      <div class="item-note" item-right color="primary">
+        {{item.nome}} - {{item.descricao}}
+      </div>
+    </button>
+
+  </ion-list>
+
+     
+  <div *ngIf="selectedItem" padding>
+    You navigated here from <b>{{selectedItem.title}}</b>
+  </div>
+</ion-content>
+
+ <button  fab fab-bottom fab-right (click)="novoEvento()" danger style="z-index:100">
+   <ion-icon name="add"></ion-icon>
+</button>
+

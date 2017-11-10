@@ -1,0 +1,85 @@
+<ion-header>
+  <ion-navbar>
+    <button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <!--<ion-title>Jovens</ion-title>-->
+    <ion-segment [(ngModel)]="opcaoPastorModel">
+      <ion-segment-button value="consultarPastor">
+        Pastores
+      </ion-segment-button>
+      <ion-segment-button value="novoPastor">
+        Novo
+      </ion-segment-button>
+    </ion-segment>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+ 
+  <ion-list *ngIf="opcaoPastorModel == 'consultarPastor'">
+    <button  ion-item *ngFor="let item of items" (click)="detalheEvento(item.codigo)">
+      <ion-icon [name]="item.icon" item-left></ion-icon>
+        {{item.nome}}
+      <div class="item-note" item-right >
+         {{item.email}}
+      </div>
+    </button>
+  </ion-list>
+  <div *ngIf="opcaoPastorModel == 'novoPastor'">
+
+    <form #novoPastorForm="ngForm" novalidate>
+      <ion-item>
+        <ion-label floating color="primary">Nome</ion-label>
+        <ion-input [(ngModel)]="pastorModel.nome" name="nome" type="text" #username="ngModel" spellcheck="false" autocapitalize="off"
+          required>
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating color="primary">Localizacao</ion-label>
+        <ion-input [(ngModel)]="pastorModel.localizacao" name="localizacao" type="text" #username="ngModel" spellcheck="false" autocapitalize="off"
+          required>
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating color="primary">Data</ion-label>
+        <ion-input [(ngModel)]="pastorModel.data" name="data" type="date" #username="ngModel" spellcheck="false" autocapitalize="off"
+          required>
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating color="primary">Horario</ion-label>
+        <ion-input [(ngModel)]="pastorModel.horario" name="horario" type="time" #username="ngModel" spellcheck="false" autocapitalize="off"
+          required>
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating color="primary">Descricao</ion-label>
+        <ion-input [(ngModel)]="pastorModel.descricao" name="descricao" type="text" #username="ngModel" spellcheck="false" autocapitalize="off"
+          required>
+        </ion-input>
+      </ion-item>
+
+  <ion-row responsive-sm>
+        <ion-col>
+          <button ion-button (click)="salvarPastor(pastorModel)" type="submit" color="primary" block>Login</button>
+        </ion-col>
+     
+      </ion-row>
+
+      <p [hidden]="username.valid || submitted == false" danger padding-left>
+        Username is required
+      </p>
+
+
+    </form>
+  </div>
+
+  <div *ngIf="selectedItem" padding>
+    You navigated here from <b>{{selectedItem.title}}</b>
+  </div>
+</ion-content>

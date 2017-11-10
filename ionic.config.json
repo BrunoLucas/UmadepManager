@@ -1,0 +1,11 @@
+{
+  "name": "Eventos Xpto",
+  "app_id": "",
+  "proxies": [],
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {},
+    "gulp": {}
+  },
+  "watchPatterns": []
+}

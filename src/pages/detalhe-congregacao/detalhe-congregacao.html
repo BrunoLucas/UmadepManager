@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title light>Congregacao</ion-title>
+    <ion-buttons left>
+      <button (click)="goBack()">
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+
+
+
+ <ion-item>
+    <ion-avatar item-left>
+      <img src="img/bear.jpg">
+    </ion-avatar>
+    <h2>{{congregacaoModel.nome}}</h2>
+  </ion-item>
+
+  <img src="img/bear.jpg">
+
+  <ion-card-content>
+    <p>{{congregacaoModel.descricao}}</p>
+  </ion-card-content>
+  <br/>
+  <div *ngIf="congregacaoModel.primeiroPastor.nome != ''">
+  <h4>Pastores:</h4>
+     <ion-item>
+            <ion-label  color="primary">Nome</ion-label>
+            <ion-label  color="primary">{{congregacaoModel.primeiroPastor.nome}}</ion-label>
+    </ion-item>
+    <ion-item>
+            <ion-label  color="primary">Nome</ion-label>
+            <ion-label  color="primary">{{congregacaoModel.segundoPastor.nome}}</ion-label>
+    </ion-item>
+  </div>
+ <br/>
+   <div *ngIf="congregacaoModel.primeiroLider.nome != ''">
+  <h4>Líderes:</h4>
+     <ion-item>
+            <ion-label  color="primary">Nome</ion-label>
+            <ion-label  color="primary">{{congregacaoModel.primeiroLider.nome}}</ion-label>
+    </ion-item>
+    <ion-item>
+            <ion-label  color="primary">Nome</ion-label>
+            <ion-label  color="primary">{{congregacaoModel.segundoLider.nome}}</ion-label>
+    </ion-item>
+
+   </div>
+
+</ion-content>

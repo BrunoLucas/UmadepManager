@@ -1,0 +1,86 @@
+<ion-header>
+  <ion-navbar>
+    <button  menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <!--<ion-title>Jovens</ion-title>-->
+    <ion-segment [(ngModel)]="opcaoLiderModel">
+      <ion-segment-button value="consultarLider">
+        Lideres
+      </ion-segment-button>
+      <ion-segment-button value="novoLider">
+        Novo
+      </ion-segment-button>
+    </ion-segment>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+
+  <ion-list *ngIf="opcaoLiderModel == 'consultarLider'">
+    <button ion-item *ngFor="let item of items" (click)="detalheLider(item.codigo)" >
+      <ion-icon [name]="item.icon" item-left></ion-icon>
+           {{item.nome}}
+      <div class="item-note" item-right>
+           {{item.email}}
+      </div>
+    </button>
+  </ion-list>
+
+  <div *ngIf="opcaoLiderModel == 'novoLider'">
+
+    <form #novoLiderForm="ngForm" novalidate>
+      <ion-item>
+        <ion-label floating color="primary">Nome</ion-label>
+        <ion-input [(ngModel)]="liderModel.nome" name="nome" type="text" #username="ngModel" spellcheck="false" autocapitalize="off"
+          required>
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating color="primary">Localizacao</ion-label>
+        <ion-input [(ngModel)]="liderModel.localizacao" name="localizacao" type="text" #username="ngModel" spellcheck="false" autocapitalize="off"
+          required>
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating color="primary">Data</ion-label>
+        <ion-input [(ngModel)]="liderModel.data" name="data" type="date" #username="ngModel" spellcheck="false" autocapitalize="off"
+          required>
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating color="primary">Horario</ion-label>
+        <ion-input [(ngModel)]="liderModel.horario" name="horario" type="time" #username="ngModel" spellcheck="false" autocapitalize="off"
+          required>
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating color="primary">Descricao</ion-label>
+        <ion-input [(ngModel)]="liderModel.descricao" name="descricao" type="text" #username="ngModel" spellcheck="false" autocapitalize="off"
+          required>
+        </ion-input>
+      </ion-item>
+
+  <ion-row responsive-sm>
+        <ion-col>
+          <button (click)="salvarLider(liderModel)" type="submit" color="primary" block>Login</button>
+        </ion-col>
+     
+      </ion-row>
+
+      <p [hidden]="username.valid || submitted == false" danger padding-left>
+        Username is required
+      </p>
+
+
+    </form>
+  </div>
+
+  <div *ngIf="selectedItem" padding>
+    You navigated here from <b>{{selectedItem.title}}</b>
+  </div>
+</ion-content>

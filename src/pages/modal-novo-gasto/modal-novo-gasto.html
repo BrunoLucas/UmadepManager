@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button menuToggle secondary>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-segment [(ngModel)]="opcaoEventoModel" secondary>
+      <ion-segment-button value="consultarEvento" secondary>
+        Novo Gasto
+      </ion-segment-button>
+      <!--<ion-segment-button value="novoEvento">
+        Novo
+      </ion-segment-button>-->
+    </ion-segment>
+  </ion-navbar>
+</ion-header>
+
+<ion-navbar *navbar>
+  <ion-buttons start>
+    <button (click)="cancel()"><ion-icon name="close"></ion-icon></button>
+  </ion-buttons>
+
+  <ion-title>Contas</ion-title>
+</ion-navbar>
+
+<ion-content padding class="modal-novo-gasto">
+  <ion-list>
+
+    <ion-item>
+      <ion-label stacked>Descrição</ion-label>
+      <ion-input type="text" [(ngModel)]="gastoModel.descricao"></ion-input>
+    </ion-item>
+
+ <ion-item>
+      <ion-label stacked>Valor</ion-label>
+      <ion-input type="text" [(ngModel)]="gastoModel.valor"></ion-input>
+    </ion-item>
+
+  </ion-list>
+  <button block color="light" (click)="salvarGasto(gastoModel)">Salvar</button>
+</ion-content>

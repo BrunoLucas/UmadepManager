@@ -1,0 +1,136 @@
+<ion-header>
+    <ion-navbar primary>
+        <!--<ion-buttons start left>
+            <button secondary (click)="voltar()">
+       <ion-icon name="arrow-back"></ion-icon>
+    </button>
+        </ion-buttons>-->
+        <ion-title>Editar Convidado</ion-title>
+
+        <ion-buttons end>
+            <button ion-button secondary (click)="salvarConvidado()">
+             Salvar<ion-icon name="cloud-done"></ion-icon>
+    </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+
+
+    <form #novoConvidadoForm="ngForm" novalidate primary>
+
+        <ion-item>
+            <ion-label floating primary>Nome</ion-label>
+            <ion-input [(ngModel)]='convidadoModel.nome' name='nome' type="text" #username='ngModel' spellcheck="false" autocapitalize="off"
+                required>
+            </ion-input>
+        </ion-item>
+    
+
+        <ion-item>
+            <ion-label floating primary>Telefone</ion-label>
+            <ion-input [(ngModel)]='convidadoModel.telefone' name='telefone' type="tel" #username='ngModel' spellcheck="false" autocapitalize="off"
+                required>
+            </ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label floating primary>E-mail</ion-label>
+            <ion-input [(ngModel)]='convidadoModel.email' name='email' type="email" #username='ngModel' spellcheck="false" autocapitalize="off"
+                required>
+            </ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label floating primary>Igreja</ion-label>
+              <ion-input [(ngModel)]='convidadoModel.congregacao' name='congregacao' type="text" #igreja='ngModel' spellcheck="false" autocapitalize="off"
+                required>
+            </ion-input>
+        </ion-item>
+
+
+      <button  full   primary  (click)="addLocalizacao()">
+        <ion-icon name="locate"></ion-icon>
+        Localização
+      </button>
+
+    <!--<ion-card *ngIf="convidadoModel.rua != undefined && convidadoModel.rua != null">
+            <ion-card-content>
+                      <ion-label  primary>Rua: {{convidadoModel.rua}}</ion-label>
+                      <ion-label  primary>Cidade: {{convidadoModel.cidade}}</ion-label>
+                      <ion-label  primary>Estado: {{convidadoModel.estado}}</ion-label>
+            </ion-card-content>
+    </ion-card>-->
+     <ion-item *ngIf="convidadoModel.rua != undefined && convidadoModel.rua != null">
+            <ion-label floating primary >Rua</ion-label>
+            <ion-input [(ngModel)]='convidadoModel.rua' name='rua' type="text" #rua='ngModel' spellcheck="false" autocapitalize="off"
+              required>
+            </ion-input>
+      </ion-item>
+       <ion-item *ngIf="convidadoModel.cidade != undefined && convidadoModel.cidade != null">
+            <ion-label floating primary >Cidade</ion-label>
+            <ion-input [(ngModel)]='convidadoModel.cidade' name='cidade' type="text" #cidade='ngModel' spellcheck="false" autocapitalize="off"
+              required>
+            </ion-input>
+      </ion-item>
+
+       <ion-item *ngIf="convidadoModel.estado != undefined && convidadoModel.estado != null">
+            <ion-label floating primary >Estado</ion-label>
+            <ion-input [(ngModel)]='convidadoModel.estado' name='estado' type="text" #estado='ngModel' spellcheck="false" autocapitalize="off"
+              required>
+            </ion-input>
+      </ion-item>
+
+       <ion-item *ngIf="convidadoModel.rua != undefined && convidadoModel.rua != null">
+            <ion-label floating primary >Número</ion-label>
+            <ion-input [(ngModel)]='convidadoModel.numero' name='numero' type="number" #numero='ngModel' spellcheck="false" autocapitalize="off"
+              required>
+            </ion-input>
+      </ion-item>
+
+       <ion-item *ngIf="convidadoModel.rua != undefined && convidadoModel.rua != null">
+            <ion-label floating primary >Complemento</ion-label>
+            <ion-input [(ngModel)]='convidadoModel.complemento' name='complemento' type="text" #complemento='ngModel' spellcheck="false" autocapitalize="off"
+              >
+            </ion-input>
+      </ion-item>
+
+  
+      <button ion-button full   primary  (click)="abrirModalOpcaoFoto()">
+        <ion-icon name="camera"></ion-icon>
+        Câmera
+      </button>
+ 
+
+
+
+    <ion-card *ngIf = 'base64ImageTela != undefined'>
+         <ion-card-content>
+                <img [src]="base64ImageTela" *ngIf="base64Image" />
+         </ion-card-content>
+    </ion-card>
+
+
+    <ion-card *ngIf = 'base64ImageTela == undefined'>
+         <ion-card-content>
+                 <img src="{{convidadoModel.foto}}" height="512" width="512">
+         </ion-card-content>
+    </ion-card>
+
+
+        <ion-row responsive-sm>
+            <ion-col>
+                <button [disabled]="!novoConvidadoForm.valid" (click)='salvarConvidado()' type='submit' primary block>Salvar</button>
+            </ion-col>
+
+        </ion-row>
+
+        <p [hidden]="username.valid || submitted == false" danger padding-left>
+            Username is required
+        </p>
+
+
+    </form>
+</ion-content>

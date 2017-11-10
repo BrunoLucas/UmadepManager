@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar primary>
+    <ion-title light>Tarefa</ion-title>
+    <ion-buttons left>
+      <button (click)="goBack()">
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+<ion-item>
+    <h2>{{tarefaModel.nome}}</h2>
+    <p>{{tarefaModel.descricao}}</p>
+
+  </ion-item>
+
+ <ion-item>
+   
+    <h2>Grupo: {{tarefaModel.grupo.nome}}</h2>
+
+  </ion-item>
+
+<ion-list  *ngFor="let jovem  of listaJovensTarefa">
+  <ion-item (click)="detalheJovem(jovem.key)" >
+    <ion-avatar item-left>
+      <img src="{{jovem.foto}}">
+    </ion-avatar>
+    <h2>{{jovem.nome}}</h2>
+    <p>{{jovem.telefone}}</p>
+  </ion-item>
+  
+</ion-list>
+  
+
+</ion-content>

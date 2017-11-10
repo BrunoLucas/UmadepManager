@@ -1,0 +1,162 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button  menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <!--<ion-title>Jovens</ion-title>-->
+    <ion-segment [(ngModel)]="opcaoCongregacaoModel" light>
+      <ion-segment-button value="consultarCongregacao">
+        Congregações
+      </ion-segment-button>
+      <ion-segment-button value="novoCongregacao">
+        Novo
+      </ion-segment-button>
+    </ion-segment>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+
+  <ion-list *ngIf="opcaoCongregacaoModel == 'consultarCongregacao'">
+    <button  ion-item *ngFor="let item of items" (click)="detalheCongregacao(item.key)">
+      <ion-icon [name]="item.icon" item-left  ></ion-icon>
+            {{item.nome}}
+      <div class="item-note" item-right >
+           {{item.descricao}}
+      </div>
+    </button>
+
+  </ion-list>
+
+
+  <div *ngIf="opcaoCongregacaoModel == 'novoCongregacao'">
+
+
+    <form #novoCongregacaoForm="ngForm" novalidate>
+
+      <ion-item>
+        <ion-label floating color="primary">Nome</ion-label>
+        <ion-input [(ngModel)]="congregacaoModel.nome" name="nome" type="text" #username="ngModel" spellcheck="false" autocapitalize="off"
+          required>
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating color="primary">Localização</ion-label>
+        <ion-input [(ngModel)]="congregacaoModel.localizacao" name="localizacao" type="text" #username="ngModel" spellcheck="false"
+          autocapitalize="off">
+        </ion-input>
+      </ion-item>
+      <br/><br/>
+      <ion-item>
+        <ion-label>Primeiro pastor </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label floating color="primary">Nome</ion-label>
+        <ion-input [(ngModel)]="congregacaoModel.primeiroPastorModel.nome" name="nomePrimeiroPastor" type="text" #username="ngModel"
+          spellcheck="false" autocapitalize="off" required>
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating color="primary">Telefone</ion-label>
+        <ion-input [(ngModel)]="congregacaoModel.primeiroPastorModel.telefone" name="primeiroPastorTelefone" type="tel" mask="(**)*****-****"
+          #username="ngModel" spellcheck="false" autocapitalize="off">
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating color="primary">E-mail</ion-label>
+        <ion-input [(ngModel)]="congregacaoModel.primeiroPastorModel.email" name="primeiroPastorEmail" type="email" #username="ngModel"
+          spellcheck="false" autocapitalize="off">
+        </ion-input>
+      </ion-item>
+      <br/><br/>
+      <ion-item>
+        <ion-label>Segundo pastor </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label floating color="primary">Nome</ion-label>
+        <ion-input [(ngModel)]="congregacaoModel.segundoPastorModel.nome" name="nomeSegundoPastor" type="text" #username="ngModel"
+          spellcheck="false" autocapitalize="off" required>
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating color="primary">Telefone</ion-label>
+        <ion-input [(ngModel)]="congregacaoModel.segundoPastorModel.telefone" name="segundoPastorTelefone" type="tel" mask="(**)*****-****"
+          #username="ngModel" spellcheck="false" autocapitalize="off">
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating color="primary">E-mail</ion-label>
+        <ion-input [(ngModel)]="congregacaoModel.segundoPastorModel.email" name="segundoPastorEmail" type="email" #username="ngModel"
+          spellcheck="false" autocapitalize="off">
+        </ion-input>
+      </ion-item>
+      <br/><br/>
+      <ion-item>
+        <ion-label>Primeiro Líder </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label floating color="primary">Nome</ion-label>
+        <ion-input [(ngModel)]="congregacaoModel.primeiroLiderModel.nome" name="nomePrimeiroLider" type="text" #username="ngModel"
+          spellcheck="false" autocapitalize="off" required>
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating color="primary">Telefone</ion-label>
+        <ion-input [(ngModel)]="congregacaoModel.primeiroLiderModel.telefone" name="primeiroLiderTelefone" type="tel" mask="(**)*****-****"
+          #username="ngModel" spellcheck="false" autocapitalize="off">
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating color="primary">E-mail</ion-label>
+        <ion-input [(ngModel)]="congregacaoModel.primeiroLiderModel.email" name="primeiroLiderEmail" type="email" #username="ngModel"
+          spellcheck="false" autocapitalize="off">
+        </ion-input>
+      </ion-item>
+      <br/><br/>
+      <ion-item>
+        <ion-label>Segundo Líder </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label floating color="primary">Nome</ion-label>
+        <ion-input [(ngModel)]="congregacaoModel.segundoLiderModel.nome" name="nomeSegundoLider" type="text" #username="ngModel"
+          spellcheck="false" autocapitalize="off" required>
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating color="primary">Telefone</ion-label>
+        <ion-input [(ngModel)]="congregacaoModel.segundoLiderModel.telefone" name="segundoLiderTelefone" type="tel" mask="(**)*****-****"
+          #username="ngModel" spellcheck="false" autocapitalize="off">
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating color="primary">E-mail</ion-label>
+        <ion-input [(ngModel)]="congregacaoModel.segundoLiderModel.email" name="segundoLiderEmail" type="email" #username="ngModel"
+          spellcheck="false" autocapitalize="off">
+        </ion-input>
+      </ion-item>
+
+
+
+
+      <ion-row responsive-sm>
+        <ion-col>
+          <button [disabled]="!novoCongregacaoForm.valid" (click)="salvarCongregacao()" type="submit" color="primary" block>Salvar</button>
+        </ion-col>
+
+      </ion-row>
+
+
+      <p [hidden]="username.valid || submitted == false" danger padding-left>
+        Username is required
+      </p>
+
+    </form>
+
+
+  </div>
+
+  <div *ngIf="selectedItem" padding>
+    You navigated here from <b>{{selectedItem.title}}</b>
+  </div>
+</ion-content>
