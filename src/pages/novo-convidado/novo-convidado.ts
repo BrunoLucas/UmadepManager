@@ -5,10 +5,9 @@ import {
   FormControl, FormArray, FormBuilder, FormGroup, Validators
 } from '@angular/forms';
 import { CongregacaoProvider } from '../../providers/congregacao/congregacao-provider';
-import { DetalheCongregacao } from '../detalhe-congregacao/detalhe-congregacao'
+import { DetalheCongregacao } from '../detalhe-congregacao/detalhe-congregacao';
 import { Fire } from '../../util/fire';
-import { Toast} from "@ionic-native/toast";
-import {Camera} from "@ionic-native/camera";
+import {Camera} from '@ionic-native/camera';
 import { ModalNovaLocalizacao } from '../modal-nova-localizacao/modal-nova-localizacao';
 
 import { ModalPhoto} from '../modal-photo/modal-photo';
@@ -55,7 +54,6 @@ export class NovoConvidado {
      public toastCtrl: ToastController,
      public modalController: ModalController,
      public viewController: ViewController,
-      public toast: Toast,
     public camera: Camera) {
 
     this.selectedItem = navParams.get('item');
@@ -69,14 +67,10 @@ export class NovoConvidado {
 
   ngOnInit() {
     let loading = this.loadingController.create({
-      content: "Aguarde"
+      content: 'Aguarde'
     });
-
-    //loading.present();
     this.firebase.getCongregacoes(items => {
       this.congregacoes.push(items);
-      // loading.dismiss();
-      //loading.dismiss();
     });
 
 
@@ -88,20 +82,9 @@ export class NovoConvidado {
     });
     toast.present();
   }
-
-
-showToast(message, position) {
-    this.toast.show(message, "short", position).subscribe(
-        toast => {
-            console.log(toast);
-        }
-    );
-}
-
-
   salvarConvidado() {
     let loading = this.loadingController.create({
-      content: "Aguarde"
+      content: 'Aguarde'
     });
 
     let toast = this.toastCtrl.create({
@@ -121,9 +104,8 @@ showToast(message, position) {
         this.convidadoModel['foto'] = res1.downloadURL;
         this.submitted = true;
         this.firebase.saveConvidado(this.convidadoModel).then((res) => {
-                console.log('Resultado ' + res)
-                loading.dismiss().then((res) =>{
-                    this.showToast('Convidado salvo', 'bottom');
+                console.log('Resultado ' + res);
+                loading.dismiss().then((res) => {
                     this.navCtrl.pop();
                     this.presentToast();
                 });
@@ -152,9 +134,6 @@ showToast(message, position) {
         });
       }
     );
-
-    //loading.dismiss();
-
   }
 
   detalheCongregacao(codigoCongregacao: number) {
@@ -184,7 +163,7 @@ showToast(message, position) {
     }).then((imageData) => {
       // imageData is a base64 encoded string
       console.log('Tirou foto ');
-      this.base64ImageTela = "data:image/jpeg;base64," + imageData;
+      this.base64ImageTela = 'data:image/jpeg;base64,' + imageData;
       this.base64Image = imageData;
     }, (err) => {
       console.log('Erro ao tirar foto ' + err);
@@ -194,13 +173,13 @@ showToast(message, position) {
     });
   }
 
- abrirModalOpcaoFoto(){
+ abrirModalOpcaoFoto() {
        let modal = this.modalController.create(ModalPhoto, { 'loading': this.loadingController });
 
 
     modal.onDidDismiss(data => {
       // console.log(data);
-      this.base64ImageTela = "data:image/jpeg;base64," + data;
+      this.base64ImageTela = 'data:image/jpeg;base64,' + data;
       this.base64Image = data;
     });
 
@@ -213,7 +192,7 @@ showToast(message, position) {
       }
     ).catch(exception => {
       console.log('Exception ' + exception);
-    });;
+    });
 
  }
 
@@ -253,7 +232,7 @@ showToast(message, position) {
       this.convidadoModel.endereco.rua = data.rua;
       this.convidadoModel.endereco.cidade = data.cidade;
       this.convidadoModel.endereco.estado = data.estado;
-      this.convidadoModel.endereco.pais = data.pais
+      this.convidadoModel.endereco.pais = data.pais;
       this.convidadoModel.endereco.latitude = data.latitude;
       this.convidadoModel.endereco.longitude = data.longitude;
     });
@@ -267,10 +246,6 @@ showToast(message, position) {
       }
     ).catch(exception => {
       console.log('Exception ' + exception);
-    });;
+    });
   }
-
-
-
-
 }

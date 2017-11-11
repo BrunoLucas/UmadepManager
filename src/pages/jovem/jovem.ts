@@ -3,10 +3,10 @@ import { NavController, NavParams, LoadingController, ToastController } from 'io
 import { 
   FormControl, FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {CongregacaoProvider} from '../../providers/congregacao/congregacao-provider';
-import {DetalheJovem}  from '../detalhe-jovem/detalhe-jovem'
+import {DetalheJovem}  from '../detalhe-jovem/detalhe-jovem';
 import {Fire} from '../../util/fire';
-import {Toast} from "@ionic-native/toast";
-import {NovoJovem} from "../novo-jovem/novo-jovem"
+import {Toast} from '@ionic-native/toast';
+import {NovoJovem} from '../novo-jovem/novo-jovem';
 
 @Component({
   templateUrl: 'jovem.html'

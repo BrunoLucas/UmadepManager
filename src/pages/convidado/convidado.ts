@@ -3,9 +3,9 @@ import { NavController, NavParams, LoadingController, ToastController } from 'io
 import { 
   FormControl, FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {CongregacaoProvider} from '../../providers/congregacao/congregacao-provider';
-import {DetalheConvidado}  from '../detalhe-convidado/detalhe-convidado'
+import {DetalheConvidado}  from '../detalhe-convidado/detalhe-convidado';
 import {Fire} from '../../util/fire';
-import {NovoConvidado} from "../novo-convidado/novo-convidado"
+import {NovoConvidado} from '../novo-convidado/novo-convidado';
 
 @Component({
   templateUrl: 'convidado.html'
@@ -45,7 +45,7 @@ export class Convidado {
 
   ngOnInit() {
     let loading = this.loadingController.create({
-      content: "Aguarde"
+      content: 'Aguarde'
      // dismissOnPageChange: true
     });
     loading.present();
@@ -65,7 +65,7 @@ export class Convidado {
 
     });
 
-    if (this.items == undefined || this.items.length == 0) {
+    if (this.items === undefined || this.items.length === 0) {
       setTimeout(() => {
         loading.dismiss();
       });

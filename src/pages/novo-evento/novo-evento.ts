@@ -1,17 +1,14 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, LoadingController, ModalController , Modal, ToastController} from 'ionic-angular';
-import { 
-  FormControl, FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormControl, FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {EventoProvider} from '../../providers/evento/evento-provider';
 import {TarefaProvider} from '../../providers/tarefa/tarefa-provider';
-import {DetalheEvento}  from '../detalhe-evento/detalhe-evento'
+import {DetalheEvento}  from '../detalhe-evento/detalhe-evento';
 import {ModalNovaTarefa} from '../modal-nova-tarefa/modal-nova-tarefa';
-import { Toast} from "@ionic-native/toast";
-import {Camera} from "@ionic-native/camera";
+import {Camera} from '@ionic-native/camera';
 import {Fire} from '../../util/fire';
 import {Evento} from '../evento/evento';
 import {ModalNovaLocalizacao} from '../modal-nova-localizacao/modal-nova-localizacao';
-
 import { ModalPhoto} from '../modal-photo/modal-photo';
 
 @Component({
@@ -28,20 +25,21 @@ export class NovoEvento {
     horario?: any, 
     descricao?: string, 
     administrador?: any, 
-    endereco?:any } = {};
+    endereco?: any } = {};
 
   submitted = false;
   listaDeTarefas  = [];
   public base64Image: string;
   base64ImageTela: string;
 
-  constructor(public navCtrl: NavController, navParams: NavParams, private firebase : Fire,
-   public loadingController: LoadingController,  public modalController : ModalController, public toastCtrl: ToastController,
-    public toast: Toast,
+  constructor(public navCtrl: NavController, navParams: NavParams, private firebase: Fire,
+   public loadingController: LoadingController,  public modalController: ModalController, public toastCtrl: ToastController,
     public camera: Camera) {
 
       this.navCtrl = navCtrl;
       this.eventoModel.endereco = {};
+      this.toastCtrl = toastCtrl;
+      this.camera = camera;
   }
   ngOnInit() {
     
@@ -55,19 +53,10 @@ export class NovoEvento {
     toast.present();
   }
 
-
-showToast(message, position) {
-    this.toast.show(message, "short", position).subscribe(
-        toast => {
-            console.log(toast);
-        }
-    );
-}
-
   salvarEvento(eventoModel) {
     
     let loading = this.loadingController.create({
-      content: "Aguarde"
+      content: 'Aguarde'
     });
     loading.present();
     let imagemBlob = this.converterBase64ParaBlob(this.base64Image, 'image/jpg');
@@ -75,14 +64,14 @@ showToast(message, position) {
 
 
     this.firebase.uploadToFirebase(imagemBlob).then(
-      (res1 :any) => {
-	      	console.log('upload do arquivo realizado com sucesso '+ res1.downloadURL);
+      (res1: any) => {
+          
+        console.log('upload do arquivo realizado com sucesso ' + res1.downloadURL);
           this.eventoModel['foto'] = res1.downloadURL;
           this.submitted = true;
           this.firebase.saveEvento(this.eventoModel).then( (res) => {
-                console.log('Resultado ' + res)                
-                loading.dismiss().then((res) =>{
-                    this.showToast('Evento salvo', 'bottom');
+                console.log('Resultado ' + res);                
+                loading.dismiss().then((res) => {
                     this.navCtrl.pop();
                     this.presentToast();
                 });
@@ -95,8 +84,8 @@ showToast(message, position) {
           this.submitted = true;
 
  
-        }).catch(exception =>{
-          console.log('erro exception '+ exception);
+        }).catch(exception => {
+          console.log('erro exception ' + exception);
         });
        
 
@@ -113,7 +102,7 @@ showToast(message, position) {
   }
 
 
-  addTarefas(){
+  addTarefas() {
      
       let modal = this.modalController.create(ModalNovaTarefa);
       modal.present();
@@ -131,12 +120,12 @@ showToast(message, position) {
     }).then((imageData) => {
       // imageData is a base64 encoded string
       console.log('Tirou foto ');
-      this.base64ImageTela = "data:image/jpeg;base64," + imageData;
+      this.base64ImageTela = 'data:image/jpeg;base64,' + imageData;
       this.base64Image = imageData;
     }, (err) => {
       console.log('Erro ao tirar foto ' + err);
-    }).catch(exception =>{
-        console.log('Erro: '+ exception);
+    }).catch(exception => {
+        console.log('Erro: ' + exception);
         alert('Erro ao tirar foto');
     });
   }
@@ -170,7 +159,7 @@ showToast(message, position) {
   }
 
 
-   addLocalizacao(){   
+   addLocalizacao() {   
       let modal = this.modalController.create(ModalNovaLocalizacao, {  'loading' : this.loadingController});
       
       modal.onDidDismiss(data => {
@@ -178,7 +167,7 @@ showToast(message, position) {
             this.eventoModel.endereco.rua = data.rua;
             this.eventoModel.endereco.cidade = data.cidade;
             this.eventoModel.endereco.estado = data.estado;
-            this.eventoModel.endereco.pais = data.pais
+            this.eventoModel.endereco.pais = data.pais;
             this.eventoModel.endereco.latitude = data.latitude;
             this.eventoModel.endereco.longitude = data.longitude;
       });
@@ -192,16 +181,16 @@ showToast(message, position) {
       }
     ).catch(exception => {
       console.log('Exception ' + exception);
-    });;
+    });
   }
 
-   abrirModalOpcaoFoto(){
+   abrirModalOpcaoFoto() {
        let modal = this.modalController.create(ModalPhoto, { 'loading': this.loadingController });
 
 
     modal.onDidDismiss(data => {
       // console.log(data);
-      this.base64ImageTela = "data:image/jpeg;base64," + data;
+      this.base64ImageTela = 'data:image/jpeg;base64,' + data;
       this.base64Image = data;
     });
 
@@ -214,7 +203,7 @@ showToast(message, position) {
       }
     ).catch(exception => {
       console.log('Exception ' + exception);
-    });;
+    });
 
  }
 

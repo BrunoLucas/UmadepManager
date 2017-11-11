@@ -28,11 +28,13 @@
     </button>
 
   </ion-list>
-
-
-
-
 </ion-content>
 
-    <button fab fab-bottom fab-right (click) = "addConvidado()" danger style="z-index:100"><ion-icon name="add"></ion-icon></button>
+ <!-- <button fab fab-bottom fab-right (click) = "addConvidado()" danger style="z-index:100">
+    <ion-icon name="add">
+    </ion-icon>
+  </button> -->
 
+<ion-fab  right bottom>
+    <button ion-fab mini (click) = "addConvidado()"  color="danger"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>

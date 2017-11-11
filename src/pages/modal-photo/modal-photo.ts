@@ -4,8 +4,8 @@ import {
    
   FormControl, FormArray, FormBuilder, FormGroup, Validators
 } from '@angular/forms';
-import { Toast} from "@ionic-native/toast";
-import {Camera} from "@ionic-native/camera";
+import { Toast} from '@ionic-native/toast';
+import {Camera} from '@ionic-native/camera';
 
 declare var resultado: any;
 @Component({
@@ -29,25 +29,25 @@ export class ModalPhoto {
     public toastCtrl: ToastController, public modalController: ModalController, public viewController: ViewController,
      public toast: Toast,
     public camera: Camera) {
-
+      this.camera = camera;
 
   }
 
   ngOnInit() {
     let loading = this.loadingController.create({
-      content: "Aguarde"
+      content: 'Aguarde'
     });
 
   }
 
 
-  selecionarFotoGaleria(){
+  selecionarFotoGaleria() {
 
-        this.camera.getPicture({
+        this.camera. getPicture({
             sourceType: this.camera.PictureSourceType.SAVEDPHOTOALBUM,
             destinationType: this.camera.DestinationType.DATA_URL
           }).then((imageData) => {
-            this.base64ImageTela = "data:image/jpeg;base64," + imageData;
+            this.base64ImageTela = 'data:image/jpeg;base64,' + imageData;
             this.base64Image = imageData;
             this.dismiss();
 
@@ -60,7 +60,7 @@ export class ModalPhoto {
         
   }
 
-  selecionarFotoTirada(){
+  selecionarFotoTirada() {
 
      this.camera.getPicture({
       destinationType: this.camera.DestinationType.DATA_URL,
@@ -70,7 +70,7 @@ export class ModalPhoto {
     }).then((imageData) => {
       // imageData is a base64 encoded string
       console.log('Tirou foto ');
-      this.base64ImageTela = "data:image/jpeg;base64," + imageData;
+      this.base64ImageTela = 'data:image/jpeg;base64,' + imageData;
       this.base64Image = imageData;
        this.dismiss();
     }, (err) => {

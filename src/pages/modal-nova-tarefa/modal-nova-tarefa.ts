@@ -7,9 +7,8 @@ import {
   FormControl, FormArray, FormBuilder, FormGroup, Validators
 } from '@angular/forms';
 import { TarefaProvider } from '../../providers/tarefa/tarefa-provider';
-
 import { ModalNovoGasto } from '../modal-novo-gasto/modal-novo-gasto';
-import { Toast } from "@ionic-native/toast";
+import { Toast } from '@ionic-native/toast';
 import { Fire } from '../../util/fire';
 import { JovemTarefa } from '../jovem-tarefa/jovem-tarefa';
 
@@ -18,7 +17,7 @@ import { JovemTarefa } from '../jovem-tarefa/jovem-tarefa';
 })
 export class ModalNovaTarefa {
   static get parameters() {
-    return [[ViewController], [NavParams], [NavController], [Fire], [LoadingController], [AlertController]]
+    return [[ViewController], [NavParams], [NavController], [Fire], [LoadingController], [AlertController]]; 
   }
 
   tarefaModel: { nome?: string, descricao?: string, id?: any } = {};
@@ -41,7 +40,7 @@ export class ModalNovaTarefa {
     this.toastController = params.data.toastController;
     this.view = view;
 
-    this.tarefaModel = params.get("parametro") || { nome: "" };
+    this.tarefaModel = params.get('parametro') || { nome: '' };
   }
   ngOnInit() {
 
@@ -59,7 +58,7 @@ export class ModalNovaTarefa {
 
 
   showToast(message, position) {
-    this.toast.show(message, "short", position).subscribe(
+    this.toast.show(message, 'short', position).subscribe(
       toast => {
         console.log(toast);
       }
@@ -78,7 +77,7 @@ export class ModalNovaTarefa {
     this.view.dismiss(this.tarefaModel);
 
     let loading = this.loadingController.create({
-      content: "Aguarde"
+      content: 'Aguarde'
     });
 
     loading.present();
@@ -86,18 +85,18 @@ export class ModalNovaTarefa {
     this.submitted = true;
     this.tarefaModel['evento'] = this.codigo;
     this.firebase.saveTarefa(this.tarefaModel).then((res) => {
-      console.log('Resultado  ModalNovaTarefa.salvarTarefa ' + res)
+      console.log('Resultado  ModalNovaTarefa.salvarTarefa ' + res);
       // loading.dismiss();
 
 
-      if (this.tarefaModel.id != undefined && this.tarefaModel.id != null) {
+      if (this.tarefaModel.id !== undefined && this.tarefaModel.id != null) {
         this.firebase.saveGrupoDeTarefa(this.tarefaModel, this.listaJovensSelecionados).then((res) => {
           console.log('Resultado ModalNovaTarefa.saveGrupoDeTarefa ' + res);
           loading.dismiss().then((res) => {
             this.showToast('Grupo-Tafera salva', 'bottom');
             this.voltar();
             this.navCtrl.pop().then((res) => {
-              console.log('pop saveGrupoDeTarefa')
+              console.log('pop saveGrupoDeTarefa');
             }).catch((res) => {
               console.log('error pop saveGrupoDeTarefa');
             });
@@ -128,8 +127,6 @@ export class ModalNovaTarefa {
       console.log(data);
       this.indicadorJovensSelecionados = true;
       this.listaJovensSelecionados = [];
-      //this.listaJovensSelecionados.push(data);
-
       // this.listaJovensSelecionados.forEach(function(temp){
       //       console.log('jovem: ' + temp.nome);
       // });
@@ -152,7 +149,7 @@ export class ModalNovaTarefa {
       }
     ).catch(exception => {
       console.log('Exception ModalNovaTarefa.addJovem : ' + exception);
-    });;
+    });
   }
 
   removeJovem(slidingItem: ItemSliding, jovem) {
@@ -173,14 +170,10 @@ export class ModalNovaTarefa {
           text: 'Remover',
           handler: () => {
             // they want to remove this session from their favorites
-            //this.user.removeFavorite(sessionData.name);
-
             let indexJovemRemover = this.listaJovensSelecionados.indexOf(jovem);
             if (indexJovemRemover > -1) {
               this.listaJovensSelecionados.splice(indexJovemRemover, 1);
             }
-            //this.updateSchedule();
-
             // close the sliding item and hide the option buttons
             slidingItem.close();
           }

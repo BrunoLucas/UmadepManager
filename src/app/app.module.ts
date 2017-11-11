@@ -42,6 +42,8 @@ import {Page1} from '../pages/page1/page1';
 import {Page2} from '../pages/page2/page2';
 import {Pastor} from '../pages/pastor/pastor';
 // import * as firebase from 'firebase';
+import {Camera} from '@ionic-native/camera';
+
 
 export  const firebaseConfig = {
             apiKey: 'AIzaSyBlbNqfeCcN2moCE4zN3GH0ubFIr6t7qUI',
@@ -129,7 +131,8 @@ export  const firebaseConfig = {
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Fire,
     EventoProvider,
-    Facebook
+    Facebook,
+    Camera
   ]
 })
 export class AppModule {}

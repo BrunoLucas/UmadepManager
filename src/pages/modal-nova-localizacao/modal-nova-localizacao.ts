@@ -1,12 +1,10 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController, NavParams, LoadingController, ViewController,  ModalController} from 'ionic-angular';
-import { 
-  FormControl, FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { FormControl, FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {TarefaProvider} from '../../providers/tarefa/tarefa-provider';
-import {Toast} from "@ionic-native/toast";
-import {Geolocation} from "@ionic-native/geolocation";
+import {Toast} from '@ionic-native/toast';
+import {Geolocation} from '@ionic-native/geolocation';
 import {Fire} from '../../util/fire';
-
 declare var google;
 
 @Component({
@@ -15,12 +13,9 @@ declare var google;
 
 export class ModalNovaLocalizacao {
   static get parameters() {
-    return [[ViewController], [NavParams], [NavController], [LoadingController]]
+    return [[ViewController], [NavParams], [NavController], [LoadingController]];
   }
-
-
   @ViewChild('map') mapElement: ElementRef;
-  //@ViewChild('endereco') any : ElementRef;
   map: any;
   enderecoBuscado: string;
   convidadoModel: {
@@ -35,7 +30,7 @@ export class ModalNovaLocalizacao {
   view: any;
   marker: any = {};
 
-localizacao:{
+localizacao: {
     rua?: string,
     cidade?: string,
     estado?: string,
@@ -48,18 +43,13 @@ localizacao:{
   constructor( public viewCtrl: ViewController, public navParams: NavParams,  public navCtrl: NavController, params, 
      public loadingController: LoadingController, public geolocation: Geolocation) {
     this.navCtrl = navCtrl;
-    //this.firebase = params.data.firebase;
-    //this.loadingController = params.data.loading;
-    //this.viewCtrl = params.data.viewCtrl;
-    // this.view = view;
-    this.enderecoBuscado = "";
+    this.enderecoBuscado = '';
     this.marker = new google.maps.Marker({
       map: this.map,
       animation: google.maps.Animation.DROP,
       draggable: true
 
     });
-    //this.localizacao = {};
   }
 
   ionViewLoaded() {
@@ -69,7 +59,6 @@ localizacao:{
   loadMap() {
 
     this.geolocation.getCurrentPosition().then((position) => {
-      //var searchBox = new google.maps.places.SearchBox(this.enderecoBuscado);
       let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
       let mapOptions = {
@@ -83,14 +72,14 @@ localizacao:{
       },
         panControl : false,
         panControlOptions: {position : google.maps.ControlPosition.BOTTOM_CENTER}
-      }
+      };
 
       this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
 
-      let input_to = (<HTMLInputElement>document.getElementById("enderecoBuscado"));
+      let input_to = (<HTMLInputElement>document.getElementById('enderecoBuscado'));
       let options = {
         types: ['address'],
-        componentRestrictions: { country: "br" }
+        componentRestrictions: { country: 'br' }
       };
       let autocomplete2 = new google.maps.places.Autocomplete(input_to, options);
       // we need to save a reference to this as we lose it in the callbacks
@@ -98,11 +87,11 @@ localizacao:{
 
       this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(input_to);
       // add the first listener
-        google.maps.event.addListener(autocomplete2, "place_changed", () =>{
+        google.maps.event.addListener(autocomplete2, 'place_changed', () => {
 
               let place = autocomplete2.getPlace();
               let geometry = place.geometry;
-              let localizacaoRetornada :{
+              let localizacaoRetornada: {
                       rua?: string,
                       cidade?: string,
                       estado?: string,
@@ -118,7 +107,7 @@ localizacao:{
                   console.log('longitude: ' + geometry.location.lng());
                   console.log('Latitude: ' + geometry.location.lat());
                 
-                if(place.types[0] == 'route'){
+                if (place.types[0] === 'route') {
                   // "locality", "country", "route"
                   localizacaoRetornada.rua = place.address_components[0].long_name;
                   localizacaoRetornada.cidade = place.address_components[2].long_name;
@@ -128,7 +117,7 @@ localizacao:{
                   localizacaoRetornada.longitude = geometry.location.lng();
                   localizacaoRetornada.latitude = geometry.location.lat();
                   this.localizacao = localizacaoRetornada;
-                }else if (place.types[0] == 'sublocality_level_1'){
+                }else if (place.types[0] === 'sublocality_level_1') {
                   localizacaoRetornada.rua = '';
                   localizacaoRetornada.cidade = place.address_components[1].long_name;
                   localizacaoRetornada.estado = place.address_components[2].long_name;
@@ -137,8 +126,7 @@ localizacao:{
                   localizacaoRetornada.longitude = geometry.location.lng();
                   localizacaoRetornada.latitude = geometry.location.lat();
                   this.localizacao = localizacaoRetornada;
-                }
-                else if (place.types[0] == 'locality'){
+                }else if (place.types[0] === 'locality') {
                   localizacaoRetornada.rua = '';
                   localizacaoRetornada.cidade = place.address_components[0].long_name;
                   localizacaoRetornada.estado = place.address_components[1].long_name;
@@ -200,8 +188,9 @@ localizacao:{
 
   }
 
-  clearTo(){
-    this.enderecoBuscado = "";
+  clearTo() {
+    console.log('clicou no texto');
+    // this.enderecoBuscado = '';
   }
   cancel() {
     this.view.dismiss();
@@ -212,7 +201,6 @@ localizacao:{
   }
 
   adicionarMarker() {
-    //this.marker['position'] = this.map.getCenter();
     console.log('localizacao: ' + this.localizacao);
     console.log('center: ' + this.map.getCenter());
 
@@ -227,7 +215,7 @@ localizacao:{
     });
 
 
-    let content = "<h4>" + this.localizacao.rua + "</h4>";
+    let content = '<h4>' + this.localizacao.rua + '</h4>';
 
     this.addInfoWindow(marker1, content);
   }
@@ -263,9 +251,9 @@ localizacao:{
   *   geocodeResponse.address_components[1].long_name = 'Wetstraat'
   */
   addresComponent(type, geocodeResponse) {
-    for(var i=0; i < geocodeResponse.address_components.length; i++) {
-      for (var j=0; j < geocodeResponse.address_components[i].types.length; j++) {
-        if (geocodeResponse.address_components[i].types[j] == type) {
+    for (var i = 0; i < geocodeResponse.address_components.length; i++) {
+      for (var j = 0; j < geocodeResponse.address_components[i].types.length; j++) {
+        if (geocodeResponse.address_components[i].types[j] === type) {
           return geocodeResponse.address_components[i].long_name;
         }
       }

@@ -1,12 +1,12 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
 import { 
   FormControl, FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {EventoProvider} from '../../providers/evento/evento-provider';
-import {DetalheEvento}  from '../detalhe-evento/detalhe-evento'
-import {NovoEvento} from '../novo-evento/novo-evento'
+import {DetalheEvento}  from '../detalhe-evento/detalhe-evento';
+import {NovoEvento} from '../novo-evento/novo-evento';
 import {Fire} from '../../util/fire';
-//import {Constant} from '../../providers/config/config.ts';
+import {Toast} from '@ionic-native/toast';
 
 @Component({
   templateUrl: 'evento.html'
@@ -26,7 +26,7 @@ export class Evento {
   submitted = false;
 
   constructor(public navCtrl: NavController, navParams: NavParams, public firebase: Fire,
-    public loadingController: LoadingController) {
+    public loadingController: LoadingController, public toastCtrl: ToastController) {
     // If we navigated to this page, we will have an item available as a nav param
     this.selectedItem = navParams.get('item');
 
@@ -44,7 +44,7 @@ export class Evento {
 
 
     let loading = this.loadingController.create({
-      content: "Aguarde"
+      content: 'Aguarde'
     });
     loading.present();
     this.firebase.getEventos(items => {
@@ -57,7 +57,7 @@ export class Evento {
         loading.dismiss();
       });
     });
-    if (this.items == undefined || this.items.length == 0) {
+    if (this.items === undefined || this.items.length === 0) {
       setTimeout(() => {
         loading.dismiss();
       });
