@@ -3,9 +3,9 @@ import { NavController, NavParams, LoadingController, ToastController } from 'io
 import {
   FormControl, FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {CongregacaoProvider} from '../../providers/congregacao/congregacao-provider';
-import {DetalheCongregacao}  from '../detalhe-congregacao/detalhe-congregacao'
+import {DetalheCongregacao}  from '../detalhe-congregacao/detalhe-congregacao';
 import {Fire} from '../../util/fire';
-import {Toast} from "@ionic-native/toast";
+import {Toast} from '@ionic-native/toast';
 
 
 @Component({
@@ -61,7 +61,7 @@ export class Congregacao {
     this.congregacaoModel.segundoPastorModel = {};
     this.congregacaoModel.primeiroLiderModel = {};
     this.congregacaoModel.segundoLiderModel = {};
-    //this.pastores = new Array({ nome: '', email: ''});
+    // this.pastores = new Array({ nome: '', email: ''});
     this.selectedItem = navParams.get('item');
     this.icons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
       'american-football', 'boat', 'bluetooth', 'build'];
@@ -73,7 +73,7 @@ export class Congregacao {
 
   ngOnInit() {
     let loading = this.loadingController.create({
-      content: "Aguarde"
+      content: 'Aguarde'
     });
     loading.present();
     this.firebase.getCongregacoes(items => {
@@ -88,7 +88,7 @@ export class Congregacao {
       });
     });
 
-    if (this.items == undefined || this.items.length == 0) {
+    if (this.items === undefined || this.items.length === 0) {
       setTimeout(() => {
         loading.dismiss();
       });
@@ -111,12 +111,12 @@ export class Congregacao {
     this.submitted = true;
 
     let loading = this.loadingController.create({
-      content: "Aguarde"
+      content: 'Aguarde'
     });
     loading.present();
     this.submitted = true;
     this.firebase.saveCongregacao(this.congregacaoModel, (res) => {
-      console.log('Resultado ' + res)
+      console.log('Resultado ' + res);
       loading.dismiss();
     });
     loading.dismiss();
@@ -126,7 +126,7 @@ export class Congregacao {
     this.congregacaoModel.segundoPastorModel = {};
     this.congregacaoModel.primeiroLiderModel = {};
     this.congregacaoModel.segundoLiderModel = {};
-    //console.log('Evento: ' + this.eventoModel);
+    // console.log('Evento: ' + this.eventoModel);
     this.navCtrl.pop();
     // this.navCtrl.push(Evento);
 
@@ -150,7 +150,7 @@ export class Congregacao {
 
 
   garantirVazio(objeto) {
-    if (objeto == undefined) {
+    if (objeto === undefined) {
       return '';
     }
     return objeto;

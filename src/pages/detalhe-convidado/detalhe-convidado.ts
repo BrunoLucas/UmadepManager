@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, LoadingController, ModalController , Modal, ToastController } from 'ionic-angular';
 import { 
-  FormControl,FormArray, FormBuilder,FormGroup, Validators} from '@angular/forms';
+  FormControl, FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {EventoProvider} from '../../providers/evento/evento-provider';
-//import {Constant} from '../../providers/config/config.ts';
 import {Dashboard} from '../dashboard/dashboard';
 import {Evento} from '../evento/evento';
 import {Fire} from '../../util/fire';
@@ -22,7 +21,7 @@ export class DetalheConvidado {
     nome?: string,
     telefone?: any,
     email?: string,
-    congregacao?:string
+    congregacao?: string;
 
   } = {};
 
@@ -36,14 +35,14 @@ export class DetalheConvidado {
 
   }
 
- ngOnInit(){
-   console.log('ngOnInit');let loading = this.loadingController.create({
+ ngOnInit() {
+   console.log('ngOnInit'); let loading = this.loadingController.create({
         content : 'Aguarde'
     });
 
     loading.present();
       
-      this.firebase.obterConvidado(this.codigo, (res)=> {   
+      this.firebase.obterConvidado(this.codigo, (res) => {   
         console.log('dados: ' + res);
         this.convidadoModel = res;
         this.convidadoModel['codigo'] = this.codigo;

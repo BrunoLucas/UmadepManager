@@ -3,10 +3,10 @@ import { NavController, NavParams, LoadingController, ToastController, ModalCont
 import { 
   FormControl, FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {CongregacaoProvider} from '../../providers/congregacao/congregacao-provider';
-import {DetalheCongregacao}  from '../detalhe-congregacao/detalhe-congregacao'
+import {DetalheCongregacao}  from '../detalhe-congregacao/detalhe-congregacao';
 import {Fire} from '../../util/fire';
-import { Toast} from "@ionic-native/toast";
-import {Camera} from "@ionic-native/camera";
+import { Toast} from '@ionic-native/toast';
+import {Camera} from '@ionic-native/camera';
 import {ModalNovaLocalizacao} from '../modal-nova-localizacao/modal-nova-localizacao';
 import { ModalPhoto} from '../modal-photo/modal-photo';
 
@@ -29,7 +29,7 @@ export class NovoJovem {
     congregacao?: any,
     telefone?: any,
     email?: any,
-    nascimento?:any,
+    nascimento?: any,
     local?: any,
     musico?: any,
     endereco?: any
@@ -42,7 +42,7 @@ export class NovoJovem {
   constructor(public navCtrl: NavController, navParams: NavParams,
     public loadingController: LoadingController,
     private firebase: Fire, public toastCtrl: ToastController,
-    public modalController : ModalController,
+    public modalController: ModalController,
      public toast: Toast,
     public camera: Camera) {
 
@@ -58,13 +58,10 @@ export class NovoJovem {
 
   ngOnInit() {
     let loading = this.loadingController.create({
-      content: "Aguarde"
+      content: 'Aguarde'
     });
-    //loading.present();
     this.firebase.getCongregacoes(items => {
       this.congregacoes.push(items);
-      // loading.dismiss();
-      //loading.dismiss();
     });
   }
 
@@ -78,7 +75,7 @@ export class NovoJovem {
 
 
 showToast(message, position) {
-    this.toast.show(message, "short", position).subscribe(
+    this.toast.show(message, 'short', position).subscribe(
         toast => {
             console.log(toast);
         }
@@ -88,38 +85,27 @@ showToast(message, position) {
 
   salvarJovem() {
     let loading = this.loadingController.create({
-      content: "Aguarde"
+      content: 'Aguarde'
     });
     loading.present();
 
     let imagemBlob = this.converterBase64ParaBlob(this.base64Image, 'image/jpg');
 
     this.firebase.uploadToFirebase(imagemBlob).then(
-      (res1 :any) => {
-	      	console.log('upload do arquivo realizado com sucesso '+ res1.downloadURL);
+      (res1: any) => {
+        console.log('upload do arquivo realizado com sucesso ' + res1.downloadURL);
           this.jovemModel['foto'] = res1.downloadURL;
           this.submitted = true;
 
-          this.firebase.saveJovem(this.jovemModel).then((res)=>{
+          this.firebase.saveJovem(this.jovemModel).then((res) => {
 
                         console.log('Resultado ' + res);
-                        loading.dismiss().then((res) =>{
+                        loading.dismiss().then((res) => {
                             this.showToast('Jovem salvo', 'bottom');
                             this.navCtrl.pop();
                             this.presentToast();
                         });
           });
-          // this.firebase.saveJovem(this.jovemModel, (res) => {
-          //   console.log('Resultado ' + res);
-          //   loading.dismiss().then((res) =>{
-          //     this.showToast('Jovem salvo', 'bottom');
-          //     this.navCtrl.pop();
-          //     this.presentToast();
-          // });
-
-          // });
-      //    loading.dismiss();
-          //this.presentToast();
 
         this.firebase.salvarImagem(res1, (res) => {
 
@@ -128,8 +114,8 @@ showToast(message, position) {
  
          // this.navCtrl.pop();
           // this.navCtrl.push(Evento);
-        }).catch(exception =>{
-          console.log('erro exception '+ exception);
+        }).catch(exception => {
+          console.log('erro exception ' + exception);
         });
 
       },
@@ -139,8 +125,6 @@ showToast(message, position) {
         loading.dismiss();
       }
     );
-
-  //loading.dismiss();
 
   }
 
@@ -160,13 +144,13 @@ showToast(message, position) {
 
   }
 
- abrirModalOpcaoFoto(){
+ abrirModalOpcaoFoto() {
        let modal = this.modalController.create(ModalPhoto, { 'loading': this.loadingController });
 
 
     modal.onDidDismiss(data => {
       // console.log(data);
-      this.base64ImageTela = "data:image/jpeg;base64," + data;
+      this.base64ImageTela = 'data:image/jpeg;base64,' + data;
       this.base64Image = data;
     });
 
@@ -179,7 +163,7 @@ showToast(message, position) {
       }
     ).catch(exception => {
       console.log('Exception ' + exception);
-    });;
+    });
 
  }
 
@@ -209,7 +193,7 @@ showToast(message, position) {
     return blob;
   }
 
-   addLocalizacao(){   
+   addLocalizacao() {   
       let modal = this.modalController.create(ModalNovaLocalizacao, {  'loading' : this.loadingController});
       
       modal.onDidDismiss(data => {
@@ -217,7 +201,7 @@ showToast(message, position) {
             this.jovemModel.endereco.rua = data.rua;
             this.jovemModel.endereco.cidade = data.cidade;
             this.jovemModel.endereco.estado = data.estado;
-            this.jovemModel.endereco.pais = data.pais
+            this.jovemModel.endereco.pais = data.pais;
             this.jovemModel.endereco.latitude = data.latitude;
             this.jovemModel.endereco.longitude = data.longitude;
       });
@@ -231,7 +215,7 @@ showToast(message, position) {
       }
     ).catch(exception => {
       console.log('Exception ' + exception);
-    });;
+    });
   }
 
 

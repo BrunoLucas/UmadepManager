@@ -13,7 +13,7 @@ import 'rxjs/Rx';
   for more info on providers and Angular 2 DI.
 */
 
-//http://localhost:8080/spring-eap6-quickstart/rest/
+// http://localhost:8080/spring-eap6-quickstart/rest/
 @Injectable()
 export class EventoProvider {
 
@@ -31,8 +31,8 @@ export class EventoProvider {
     //    .then(res => res.json(), err => console.log(err));
     }
 
-   findOne(codigo : number) {
-        return this.http.get(Constant.SERVER_URL + '/evento/'+ codigo) 
+   findOne(codigo: number) {
+        return this.http.get(Constant.SERVER_URL + '/evento/' + codigo) 
         .map(res => res.json())
             .catch(this.handleError); 
     //         .toPromise()

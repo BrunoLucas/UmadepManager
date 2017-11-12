@@ -20,19 +20,19 @@ export class TarefaProvider {
             .catch(this.handleError); 
     }
 
-   findOne(codigo : number) {
-        return this.http.get(Constant.SERVER_URL + '/tarefa/'+ codigo) 
+   findOne(codigo: number) {
+        return this.http.get(Constant.SERVER_URL + '/tarefa/' + codigo) 
         .map(res => res.json())
             .catch(this.handleError); 
     }
  
     saveTarefa(property) {
         var body = JSON.stringify(property);
-        console.log('body: '+ body);
+        console.log('body: ' + body);
         let headers = new Headers();
         headers.append('Content-Type', 'application/json' );
         let options = new RequestOptions({ headers: headers });
-        return this.http.post(Constant.SERVER_URL+ '/tarefa/salvar',body, options)
+        return this.http.post(Constant.SERVER_URL + '/tarefa/salvar', body, options)
             .map((res) => { 
                 console.log('res: ' + res);
                 return res.json();

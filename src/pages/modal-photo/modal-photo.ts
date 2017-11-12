@@ -29,18 +29,11 @@ export class ModalPhoto {
     public toastCtrl: ToastController, public modalController: ModalController, public viewController: ViewController,
      public toast: Toast,
     public camera: Camera) {
-      console.log('toas ' + this.toast);
-      console.log('toast controller' + this.toastCtrl);
-      console.log('modal ' + this.modalController);
-      console.log('view controller ' + this.viewController);
-      console.log('camera' + this.camera);
   }
-
   
   ngOnInit() {
   }
-
-
+  
   selecionarFotoGaleria() {
         this.camera. getPicture({
             sourceType: this.camera.PictureSourceType.SAVEDPHOTOALBUM,

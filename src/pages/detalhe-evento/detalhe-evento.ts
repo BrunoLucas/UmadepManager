@@ -2,9 +2,8 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, LoadingController, ModalController ,
    Modal, ToastController, AlertController } from 'ionic-angular';
 import { 
-  FormControl,FormArray, FormBuilder,FormGroup, Validators} from '@angular/forms';
+  FormControl, FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {EventoProvider} from '../../providers/evento/evento-provider';
-//import {Constant} from '../../providers/config/config.ts';
 import {Dashboard} from '../dashboard/dashboard';
 import {Evento} from '../evento/evento';
 import {Fire} from '../../util/fire';
@@ -18,29 +17,29 @@ import {DetalheTarefa} from '../detalhe-tarefa/detalhe-tarefa';
 })
 export class DetalheEvento {
 
-  codigo : any;
+  codigo: any;
   evento = {codigo: '', 
     nome: '', 
     descricao: '',
     data: null};
-  tarefas : any = []; 
+  tarefas: any = []; 
   constructor(public navCtrl: NavController, public navParams: NavParams, 
    public loadingController: LoadingController, public firebase: Fire,  
-   public modalController : ModalController, public toastController: ToastController,
+   public modalController: ModalController, public toastController: ToastController,
     public alertController: AlertController)  {
     this.codigo = this.navParams.data;
     console.log('aqui detalhe evento');
 
   }
 
- ngOnInit(){
-   console.log('ngOnInit');let loading = this.loadingController.create({
-        content : "Aguarde"
+ ngOnInit() {
+   console.log('ngOnInit'); let loading = this.loadingController.create({
+        content : 'Aguarde'
     });
 
     loading.present();
       
-      this.firebase.obterEvento(this.codigo, (res)=>{
+      this.firebase.obterEvento(this.codigo, (res) => {
         console.log('dados: ' + res);
         this.evento = res;
         this.evento['codigo'] = this.codigo;
@@ -52,7 +51,7 @@ export class DetalheEvento {
 
  }
 
-   addTarefas(){   
+   addTarefas() {   
       let modal = this.modalController.create(ModalNovaTarefa, 
       {'evento' : this.evento,
        'firebase': this.firebase,
@@ -71,7 +70,7 @@ export class DetalheEvento {
       }
     ).catch(exception => {
       console.log('Exception ' + exception);
-    });;
+    });
   }
 
   detalheTarefa(codigoTarefa: number) {

@@ -3,7 +3,6 @@ import { NavController, NavParams, LoadingController } from 'ionic-angular';
 import { 
   FormControl, FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {PessoaProvider} from '../../providers/pessoa/pessoa-provider';
-//import {DetalhePessoa}  from '../detalhe-pessoa/detalhe-pessoa'
 
 @Component({
   templateUrl: 'lider.html'
@@ -36,7 +35,7 @@ export class Lider {
 
   ngOnInit() {
     let loading = this.loadingController.create({
-      content: "Aguarde"
+      content: 'Aguarde'
     });
     loading.present();
     // this.pessoaProvider.findAllLideres().subscribe(

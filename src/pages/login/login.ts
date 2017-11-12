@@ -77,7 +77,7 @@ export class LoginPage {
 
         const facebookCredential = firebase.auth.FacebookAuthProvider.credential(res.authResponse.accessToken);
         token = res.authResponse.accessToken;
-         firebase.auth().signInWithCredential(facebookCredential).then( result =>{
+         firebase.auth().signInWithCredential(facebookCredential).then( result => {
 
           // this.showAlert('Teste', 'retorno firebase ' + result.toJSON());
           console.log('result: ' + result);
@@ -94,7 +94,7 @@ export class LoginPage {
           this.fire.setUser(objeto); 
           this.navCtrl.setRoot(Dashboard);
         });
-      }).catch(exception =>{
+      }).catch(exception => {
         this.showAlert('Teste', 'retorno erro facebook ' + exception);
       });
     } else {
@@ -104,9 +104,9 @@ export class LoginPage {
           // this.showAlert('Teste', 'retorno firebase app web ' +res);
           console.log('res:' + res);
           this.navCtrl.setRoot(Dashboard);
-      }).catch(exception =>{
+      }).catch(exception => {
         //  this.showAlert('Teste', 'retorno erro facebook ' + exception);
-      });;
+      });
     }
   }
 

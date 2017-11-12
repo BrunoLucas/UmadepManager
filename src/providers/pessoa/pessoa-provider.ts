@@ -12,7 +12,7 @@ import 'rxjs/Rx';
   for more info on providers and Angular 2 DI.
 */
 
-//http://localhost:8080/spring-eap6-quickstart/rest/
+// http://localhost:8080/spring-eap6-quickstart/rest/
 @Injectable()
 export class PessoaProvider {
 
@@ -55,8 +55,8 @@ export class PessoaProvider {
     //    .then(res => res.json(), err => console.log(err));
     }
 
-   findOne(codigo : number) {
-        return this.http.get(Constant.SERVER_URL + '/pessoa/'+ codigo) 
+   findOne(codigo: number) {
+        return this.http.get(Constant.SERVER_URL + '/pessoa/' + codigo) 
         .map(res => res.json())
             .catch(this.handleError); 
     //         .toPromise()
@@ -65,11 +65,11 @@ export class PessoaProvider {
  
     savePessoa(property) {
         var body = JSON.stringify(property);
-        console.log('body: '+ body);
+        console.log('body: ' + body);
         let headers = new Headers();
        // body = JSON.stringify(body);
         headers.append('Content-Type', 'application/json' );
-       ;        // let headers = new Headers({
+              // let headers = new Headers({
         //      'Content-Type': 'application/json' ,
         //      'Access-Control-Allow-Origin' : '*',
         //      'Access-Control-Allow-Methods' : 'POST, GET, OPTIONS, DELETE',
@@ -77,7 +77,7 @@ export class PessoaProvider {
         //      'Access-Control-Allow-Headers': 'x-requested-with, X-Auth-Token, Content-Type'
         //     });
         let options = new RequestOptions({ headers: headers });
-        return this.http.post(Constant.SERVER_URL+ '/pessoa/salvar',body, options)
+        return this.http.post(Constant.SERVER_URL + '/pessoa/salvar', body, options)
             .map((res) => { 
                 console.log('res: ' + res);
                 return res.json();

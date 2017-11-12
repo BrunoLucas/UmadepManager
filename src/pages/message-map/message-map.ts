@@ -66,7 +66,7 @@ export class MessageMapPage {
       this.position.lat = latLng.lat();
       this.position.lng = latLng.lng();
       this.position.address = address;
-    })
+    });
   }
 
   onSendMessage() {

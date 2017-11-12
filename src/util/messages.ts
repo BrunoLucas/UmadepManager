@@ -32,15 +32,15 @@ export class Messages {
       let message = snapshot.val();
       message.key = snapshot.key;
 
-      message.map =  "https://maps.googleapis.com/maps/api/staticmap?center=" +
-        message.lat + ", " + message.lng +
-        "&zoom=15&size=400x400" +
-        "&markers=color:red%7Clabel:S%7C" +
-        message.lat + ", " + message.lng +
-        "&maptype=roadmap&key=AIzaSyBst0zq0LAxMY09cHkYffDgfkr_jDt68Sg";
+      message.map =  'https://maps.googleapis.com/maps/api/staticmap?center=' +
+        message.lat + ', ' + message.lng +
+        '&zoom=15&size=400x400' +
+        '&markers=color:red%7Clabel:S%7C' +
+        message.lat + ', ' + message.lng +
+        '&maptype=roadmap&key=AIzaSyBst0zq0LAxMY09cHkYffDgfkr_jDt68Sg';
 
       successCallback(message);
-    })
+    });
   }
 
   setMessageRead(message) {

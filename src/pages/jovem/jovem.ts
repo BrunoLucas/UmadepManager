@@ -47,8 +47,8 @@ export class Jovem {
   ngOnInit() {
 
     let loading = this.loadingController.create({
-      content: "Aguarde"
-       //dismissOnPageChange: true
+      content: 'Aguarde'
+       // dismissOnPageChange: true
     });
     loading.present();
     this.firebase.getJovens(items => {//
@@ -67,7 +67,7 @@ export class Jovem {
 
     });
 
-     if(this.items == undefined || this.items.length == 0){
+     if (this.items === undefined || this.items.length === 0) {
         setTimeout(() => {
         loading.dismiss();
       });    
@@ -106,7 +106,7 @@ export class Jovem {
 
 
   garantirVazio(objeto) {
-    if (objeto == undefined) {
+    if (objeto === undefined) {
       return '';
     }
     return objeto;

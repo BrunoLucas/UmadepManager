@@ -3,10 +3,7 @@ import { NavController, NavParams, LoadingController } from 'ionic-angular';
 import { 
   FormControl, FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {EventoProvider} from '../../providers/evento/evento-provider';
-import {DetalheEvento}  from '../detalhe-evento/detalhe-evento'
-
-//import {Tarefa} from '../notarefa/nova-tarefa.ts'
-//import {Constant} from '../../providers/config/config.ts';
+import {DetalheEvento}  from '../detalhe-evento/detalhe-evento';
 
 @Component({
   templateUrl: 'evento.html'
@@ -15,9 +12,9 @@ export class Evento {
 
   selectedItem: any;
   opcaoEventoModel = 'consultarEvento';
-  icons : string[];
+  icons: string[];
  // loading : any;
-  items : Array<{ codigo: number, nome: string, descricao: string, icon?: any }>;
+  items: Array<{ codigo: number, nome: string, descricao: string, icon?: any }>;
   eventoForm = new FormGroup({
     nome : new FormControl()
   });
@@ -30,7 +27,7 @@ export class Evento {
     this.selectedItem = navParams.get('item');
 
     // this.loading = this.loadingController.create({
-    //     content : "Aguarde"
+    //     content : 'Aguarde'
     // });
 
     // Let's populate this page with some filler content for funzies
@@ -50,7 +47,7 @@ export class Evento {
   }
   ngOnInit() {
      let loading = this.loadingController.create({
-        content : "Aguarde"
+        content : 'Aguarde'
     });
     loading.present();
     // this.eventoProvider.findAll().subscribe(
@@ -120,7 +117,7 @@ export class Evento {
 
   }
 
-  novoEvento(){
+  novoEvento() {
     //  this.navCtrl.push(NovoEvento).then(
     //   response => {
     //     console.log('Response ' + response);

@@ -25,7 +25,7 @@ export class Fire {
                 console.log('Resultado de erro login facebook: ' + error);
                 errorCallback(error);
             }
-        )
+        );
     }
 
     loginGoogle(token: string, successCallback, errorCallback) {
@@ -126,10 +126,10 @@ export class Fire {
 
         var updates = {};
         
-        for(let i = 0; i < grupo.length; i++){
-            updates[idGeradoRef.key + '/participantes/'+ grupo[i].key] = true;
+        for (let i = 0; i < grupo.length; i++) {
+            updates[idGeradoRef.key + '/participantes/' + grupo[i].key] = true;
         }
-        updates[idGeradoRef.key + '/tarefas/'+ tarefa.id] = true;            
+        updates[idGeradoRef.key + '/tarefas/' + tarefa.id] = true;            
         this.getDB().database().ref(caminhoGrupo).update(updates);
         let updateTarefa = {};
         updateTarefa['/grupo'] = idGeradoRef.key; 
@@ -300,7 +300,7 @@ export class Fire {
 
 
     garantirVazio(objeto) {
-        if (objeto == undefined) {
+        if (objeto === undefined) {
             return '';
         }
         return objeto;
@@ -324,7 +324,7 @@ export class Fire {
         //     successCallback(message);
         // })
         
-        //TODO
+        // TODO
         // if(this.verificarSeNaoEstaVazio(filtro.nome)){
         //    ref.orderByChild("nome").startAt(filtro.nome);
         // }
@@ -342,7 +342,7 @@ export class Fire {
     }
 
     verificarSeNaoEstaVazio(objeto) {
-        if (objeto != undefined && objeto != null && objeto != '') {
+        if (objeto !== undefined && objeto != null && objeto !== '') {
             return true;
         }
         return false;
@@ -356,7 +356,7 @@ export class Fire {
             message.key = snapshot.key;
 
             successCallback(message);
-        })
+        });
 
     }
 
@@ -368,7 +368,7 @@ export class Fire {
             let message = snapshot.val();
             message.key = snapshot.key;
             successCallback(message);
-        })
+        });
 
     }
 
@@ -382,7 +382,7 @@ export class Fire {
             message.key = snapshot.key;
 
             successCallback(message);
-        })
+        });
 
     }
 
@@ -395,29 +395,29 @@ export class Fire {
             message.key = snapshot.key;
 
             successCallback(message);
-        })
+        });
 
     }
 
     obterJovem(key, successCallback) {
 
-        let ref = this.getDB().database().ref('/jovem/' + this.getUser().id + "/" + key)
+        let ref = this.getDB().database().ref('/jovem/' + this.getUser().id + '/' + key)
             .once('value', (snapshot) => {
                 let message = snapshot.val();
                 message.key = snapshot.key;
                 successCallback(message);
-            })
+            });
 
     }
 
 
     obterEvento(key, successCallback) {
 
-        let ref = this.getDB().database().ref('/evento/' + this.getUser().id + "/" + key)
+        let ref = this.getDB().database().ref('/evento/' + this.getUser().id + '/' + key)
             .once('value', (snapshot) => {
                 let message = snapshot.val();
                 successCallback(message);
-            })
+            });
 
     }
 
@@ -425,43 +425,43 @@ export class Fire {
 
     obterTarefa(key, successCallback) {
 
-        let ref = this.getDB().database().ref('/tarefa/' + this.getUser().id + "/" + key)
+        let ref = this.getDB().database().ref('/tarefa/' + this.getUser().id + '/' + key)
             .once('value', (snapshot) => {
                 let message = snapshot.val();
                 successCallback(message);
-            })
+            });
 
     }
 
    obterGrupo(key, successCallback) {
 
-        let ref = this.getDB().database().ref('/grupo/' + this.getUser().id + "/" + key)
+        let ref = this.getDB().database().ref('/grupo/' + this.getUser().id + '/' + key)
             .once('value', (snapshot) => {
                 let message = snapshot.val();
                 message.key = snapshot.key;
                 successCallback(message);
-            })
+            });
 
     }
 
 
     obterCongregacao(key, successCallback) {
 
-        let ref = this.getDB().database().ref('/congregacao/' + this.getUser().id + "/" + key)
+        let ref = this.getDB().database().ref('/congregacao/' + this.getUser().id + '/' + key)
             .once('value', (snapshot) => {
                 let message = snapshot.val();
                 successCallback(message);
-            })
+            });
 
     }
 
     obterConvidado(key, successCallback) {
 
-        let ref = this.getDB().database().ref('/convidado/' + this.getUser().id + "/" + key)
+        let ref = this.getDB().database().ref('/convidado/' + this.getUser().id + '/' + key)
             .once('value', (snapshot) => {
                 let message = snapshot.val();
                 successCallback(message);
-            })
+            });
 
     }
     obterTarefasDoEvento(key, successCallback) {

@@ -10,18 +10,18 @@ import {TarefaProvider} from '../../providers/tarefa/tarefa-provider';
 })
 export class ModalNovoGasto {
  static get parameters() {
-    return [[ViewController], [NavParams]]
+    return [[ViewController], [NavParams]];
   }
 
   gastoModel: { descricao?: string, valor ?: any} = {};
   submitted = false;
-  view : any;
+  view: any;
   constructor(view, params, public navCtrl: NavController, navParams: NavParams, public TarefaProvider: TarefaProvider,
    public loadingController: LoadingController) {
  
     this.view = view;
 
-    this.gastoModel = params.get("parametro") || {descricao: ""};
+    this.gastoModel = params.get('parametro') || {descricao: ''};
   }
   ngOnInit() {
 

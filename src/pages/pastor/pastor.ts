@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, LoadingController } from 'ionic-angular';
 import { 
-  FormControl,FormArray, FormBuilder,FormGroup, Validators} from '@angular/forms';
+  FormControl, FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {PessoaProvider} from '../../providers/pessoa/pessoa-provider';
-//import {DetalhePessoa}  from '../detalhe-pessoa/detalhe-pessoa'
 
 @Component({
 templateUrl: 'pastor.html'
@@ -18,7 +17,7 @@ export class Pastor {
   PastorForm = new FormGroup({
       nome: new FormControl()
     });
-  pastorModel: {nome? : string, localizacao?: string, data? : any, horario? : any, descricao?: string} = {};
+  pastorModel: {nome?: string, localizacao?: string, data?: any, horario?: any, descricao?: string} = {};
   submitted  = false;
   
   constructor(public navCtrl: NavController, navParams: NavParams, 
@@ -40,62 +39,28 @@ export class Pastor {
       item: item
     });
   }
-  alert1(){
+  alert1() {
       console.log('trocar de pag');
   }
 
   ngOnInit() {
      let loading = this.loadingController.create({
-        content : "Aguarde"
+        content : 'Aguarde'
     });
     loading.present();
-    // this.pessoaProvider.findAllPastores().subscribe(
-    //   (data) => {
-    //     console.log('dados: ' + data);
-    //     this.items = data;
-    //     console.log(this.items[0]);
-    //     for (let i = 0; i < this.items.length; i++) {
-    //       this.items[i]['icon'] = '';
-    //       this.items[i].icon = this.icons[Math.floor(Math.random() * this.icons.length)];
+    loading.dismiss();
 
-    //     }
-        loading.dismiss();
-    //   },
-    //   (err) => {
-    //     console.log('erro: ' + err);
-    //     loading.dismiss();
-    //   }
-    // );
   }
     salvarPastor(novoPastorForm) {
     console.log('objeto: ' + this.pastorModel);
     this.submitted = true;
-   this.pastorModel.horario = null;
+    this.pastorModel.horario = null;
     this.pastorModel.data = null;
-    // this.pessoaProvider.savePessoa(this.pastorModel).subscribe(
-    //   (data) => {
-    //     console.log('salvou: ' + data);
-    //   },
-    //   (err) => {
-    //     console.log('error: ' + err);
-    //   }
-    // );
     console.log('Evento: ' + this.pastorModel);
   }
 
     detalhePastor(codigoPastor: number) {
     console.log('codigo: ' + codigoPastor);
-
-    // this.navCtrl.push(DetalhePessoa, codigoPastor).then(
-    //   response => {
-    //     console.log('Response ' + response);
-    //   },
-    //   error => {
-    //     console.log('Error: ' + error);
-    //   }
-    // ).catch(exception => {
-    //   console.log('Exception ' + exception);
-    // });
 
   }
 }

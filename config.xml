@@ -4,7 +4,7 @@
     <description>Cadastre os eventos</description>
     <author name="Bruno Lucas" />
     <author email="rukaso.mero@gmail.com" href="http://ionicframework.com/">Bruno Lucas</author>
-    <content original-src="index.html" src="http://192.168.0.104:8100" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />

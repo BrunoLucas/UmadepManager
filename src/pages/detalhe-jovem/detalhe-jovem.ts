@@ -17,7 +17,7 @@ export class DetalheJovem {
     nome?: string,
     telefone?: any,
     email?: any,
-    congregacao?:any 
+    congregacao?: any;
 
   } = {};
 
@@ -38,11 +38,11 @@ export class DetalheJovem {
 
     loading.present();
       
-      this.firebase.obterJovem(this.codigo, (res)=> {
+      this.firebase.obterJovem(this.codigo, (res) => {
         console.log('dados: ' + res);
         this.jovemModel = res;
         this.jovemModel['codigo'] = this.codigo;
-        this.firebase.obterCongregacao(this.jovemModel.congregacao, (congregacao)=> {
+        this.firebase.obterCongregacao(this.jovemModel.congregacao, (congregacao) => {
                 this.jovemModel.congregacao = congregacao;
        });
         loading.dismiss();

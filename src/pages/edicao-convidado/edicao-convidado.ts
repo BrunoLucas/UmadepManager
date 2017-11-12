@@ -5,14 +5,13 @@ import {
   FormControl, FormArray, FormBuilder, FormGroup, Validators
 } from '@angular/forms';
 import { EventoProvider } from '../../providers/evento/evento-provider';
-//import {Constant} from '../../providers/config/config.ts';
 import { Dashboard } from '../dashboard/dashboard';
 import { Evento } from '../evento/evento';
 import { Fire } from '../../util/fire';
 import { ModalNovaTarefa } from '../modal-nova-tarefa/modal-nova-tarefa';
 import { ModalNovaLocalizacao } from '../modal-nova-localizacao/modal-nova-localizacao';
-import { Toast } from "@ionic-native/toast";
-import { Camera } from "@ionic-native/camera"
+import { Toast } from '@ionic-native/toast';
+import { Camera } from '@ionic-native/camera';
 import { ModalPhoto } from '../modal-photo/modal-photo';
 
 @Component({
@@ -56,7 +55,7 @@ export class EdicaoConvidado {
 
   ngOnInit() {
     console.log('ngOnInit'); let loading = this.loadingController.create({
-      content: "Aguarde"
+      content: 'Aguarde'
     });
 
 
@@ -82,7 +81,7 @@ export class EdicaoConvidado {
 
 
   showToast(message, position) {
-    this.toast.show(message, "short", position).subscribe(
+    this.toast.show(message, 'short', position).subscribe(
       toast => {
         console.log(toast);
       }
@@ -91,10 +90,9 @@ export class EdicaoConvidado {
 
   salvarConvidado() {
 
-    if (this.base64Image != undefined && this.base64Image != null) {
+    if (this.base64Image !== undefined && this.base64Image != null) {
       this.salvarConvidadoComNovaImagem();
-    }
-    else {
+    }else {
       this.salvarConvidadoComMesmaImagem();
     }
   }
@@ -104,7 +102,7 @@ export class EdicaoConvidado {
 
 
     let loading = this.loadingController.create({
-      content: "Salvando..."
+      content: 'Salvando...'
     });
 
     let toast = this.toastCtrl.create({
@@ -148,7 +146,7 @@ export class EdicaoConvidado {
 
           setTimeout(() => {
             loading.dismiss();
-            //toast.present();
+            // toast.present();
           });
           this.navCtrl.pop();
           // this.navCtrl.push(Evento);
@@ -179,7 +177,7 @@ export class EdicaoConvidado {
   salvarConvidadoComMesmaImagem() {
 
     let loading = this.loadingController.create({
-      content: "Salvando..."
+      content: 'Salvando...'
     });
 
     let toast = this.toastCtrl.create({
@@ -192,7 +190,7 @@ export class EdicaoConvidado {
 
     this.firebase.editConvidado(this.convidadoModel).then((res) => {
 
-      console.log('Resultado de edit convidado' + res)
+      console.log('Resultado de edit convidado' + res);
       setTimeout(() => {
         console.log('dismiss...');
         loading.dismiss().then((res) => {
@@ -218,7 +216,7 @@ export class EdicaoConvidado {
       loading.dismiss();
       this.navCtrl.pop();
 
-      //toast.present();
+      // toast.present();
     });
     // this.navCtrl.push(Evento);
 
@@ -232,7 +230,7 @@ export class EdicaoConvidado {
       this.convidadoModel.rua = data.rua;
       this.convidadoModel.cidade = data.cidade;
       this.convidadoModel.estado = data.estado;
-      this.convidadoModel.pais = data.pais
+      this.convidadoModel.pais = data.pais;
       this.convidadoModel.latitude = data.latitude;
       this.convidadoModel.longitude = data.longitude;
     });
@@ -246,7 +244,7 @@ export class EdicaoConvidado {
       }
     ).catch(exception => {
       console.log('Exception ' + exception);
-    });;
+    });
   }
 
   takePicture() {
@@ -258,7 +256,7 @@ export class EdicaoConvidado {
     }).then((imageData) => {
       // imageData is a base64 encoded string
       console.log('Tirou foto ');
-      this.base64ImageTela = "data:image/jpeg;base64," + imageData;
+      this.base64ImageTela = 'data:image/jpeg;base64,' + imageData;
       this.base64Image = imageData;
     }, (err) => {
       console.log('Erro ao tirar foto ' + err);
@@ -299,7 +297,7 @@ export class EdicaoConvidado {
 
     modal.onDidDismiss(data => {
       // console.log(data);
-      this.base64ImageTela = "data:image/jpeg;base64," + data;
+      this.base64ImageTela = 'data:image/jpeg;base64,' + data;
       this.base64Image = data;
     });
 
@@ -312,7 +310,7 @@ export class EdicaoConvidado {
       }
     ).catch(exception => {
       console.log('Exception ' + exception);
-    });;
+    });
 
   }
 
