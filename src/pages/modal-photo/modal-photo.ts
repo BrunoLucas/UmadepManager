@@ -5,12 +5,12 @@ import {
   FormControl, FormArray, FormBuilder, FormGroup, Validators
 } from '@angular/forms';
 import {Toast} from '@ionic-native/toast';
-import {Camera, CameraOptions} from '@ionic-native/camera';
+import {Camera} from '@ionic-native/camera';
 
 @Component({
   templateUrl: 'modal-photo.html'
-
 })
+
 export class ModalPhoto {
 
  static get parameters() {
@@ -28,7 +28,8 @@ export class ModalPhoto {
     public loadingController: LoadingController,
     public toastCtrl: ToastController, public modalController: ModalController, public viewController: ViewController,
      public toast: Toast,
-    public camera: Camera) {
+    private camera: Camera) {
+
   }
   
   ngOnInit() {
@@ -47,8 +48,7 @@ export class ModalPhoto {
             }, (err) => {
             console.log(err);
           }).catch(exception => {
-              console.log('Erro ao selecionar foto da galeria: ' + exception);
-              alert('Erro ao selecionar foto');
+              console.error('Erro ao selecionar foto da galeria: ' + exception);
           });
         
   }
@@ -62,15 +62,14 @@ export class ModalPhoto {
       saveToPhotoAlbum: true
     }).then((imageData) => {
       // imageData is a base64 encoded string
-      console.log('Tirou foto ');
+      console.debug('Tirou foto ');
       this.base64ImageTela = 'data:image/jpeg;base64,' + imageData;
       this.base64Image = imageData;
        this.dismiss();
     }, (err) => {
-      console.log('Erro ao tirar foto ' + err);
+      console.error('Erro ao tirar foto ' + err);
     }).catch(exception => {
-      console.log('Erro: ' + exception);
-      alert('Erro ao tirar foto');
+      console.error('Erro: ' + exception);
     });
 
   }

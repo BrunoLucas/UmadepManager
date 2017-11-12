@@ -52,10 +52,11 @@
 
 
   <!--<ion-item>-->
-      <button  full  color="primary"  (click)="addLocalizacao()">
+      <button ion-button full  color="primary"  (click)="addLocalizacao()">
         <ion-icon name="locate"></ion-icon>
         Localização
       </button>
+      
     <!--</ion-item>-->
 
     <!--<ion-card *ngIf="convidadoModel.endereco.rua != undefined && convidadoModel.endereco.rua != null">
@@ -101,7 +102,7 @@
       </ion-item>
 
 
-      <button ion-button full  color="primary"  (click)="abrirModalOpcaoFoto()"> <!--takePicture()-->
+      <button ion-button full  color="primary"  (click)="abrirGaleria()"> <!--takePicture()-->
         <ion-icon name="camera"></ion-icon>
         Câmera
       </button>
@@ -112,13 +113,10 @@
          </ion-card-content>
     </ion-card>
 
-
-        <ion-row responsive-sm>
-            <ion-col>
-                <button [disabled]="!novoConvidadoForm.valid" (click)='salvarConvidado()' type='submit' color="primary" block>Salvar</button>
-            </ion-col>
-
-        </ion-row>
+         <button ion-button full  type='submit'  color="primary"  (click)="salvarConvidado()"> <!--takePicture()-->
+            <ion-icon name="save"></ion-icon>
+            Salvar
+          </button>
 
         <p [hidden]="username.valid || submitted == false" danger padding-left>
             Username is required

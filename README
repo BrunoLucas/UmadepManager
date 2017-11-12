@@ -2,7 +2,7 @@ ionic cordova plugin add cordova-plugin-facebook4 --variable APP_ID="26168648761
 
 ionic cordova plugin add cordova-plugin-firebase
 
-$ ionic cordova plugin add cordova-plugin-googlemaps --variable API_KEY_FOR_ANDROID="AIzaSyCMBidBl4FeZM3tdZE4sH249cDY4TFJxcE" 
+ionic cordova plugin add cordova-plugin-googlemaps --variable API_KEY_FOR_ANDROID="AIzaSyCMBidBl4FeZM3tdZE4sH249cDY4TFJxcE" 
 
 ionic cordova plugin add cordova-plugin-camera
 

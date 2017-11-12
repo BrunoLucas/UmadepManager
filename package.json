@@ -21,8 +21,8 @@
         "@angular/http": "4.1.0",
         "@angular/platform-browser": "4.1.0",
         "@angular/platform-browser-dynamic": "4.1.0",
-        "@ionic-native/camera": "^3.14.0",
-        "@ionic-native/core": "^3.14.0",
+        "@ionic-native/camera": "^3.10.2",
+        "@ionic-native/core": "3.7.0",
         "@ionic-native/facebook": "^3.14.0",
         "@ionic-native/geolocation": "^3.10.2",
         "@ionic-native/google-maps": "^4.4.0",
@@ -33,7 +33,7 @@
         "@ionic/storage": "2.0.1",
         "angularfire2": "^4.0.0-rc.0",
         "cordova-android": "^6.2.3",
-        "cordova-plugin-camera": "^2.4.1",
+        "cordova-plugin-camera": "^3.0.0",
         "cordova-plugin-compat": "^1.1.0",
         "cordova-plugin-console": "^1.0.7",
         "cordova-plugin-contacts": "^2.3.1",
@@ -144,13 +144,16 @@
             "cordova-plugin-network-information": {},
             "cordova-plugin-x-toast": {},
             "cordova-plugin-firebase": {},
-            "cordova-plugin-camera": {},
             "cordova-plugin-googlemaps": {
                 "API_KEY_FOR_ANDROID": "AIzaSyCMBidBl4FeZM3tdZE4sH249cDY4TFJxcE"
             },
             "cordova-plugin-geolocation": {},
             "cordova-plugin-inappbrowser": {},
-            "cordova-plugin-contacts": {}
+            "cordova-plugin-contacts": {},
+            "cordova-plugin-camera": {
+                "CAMERA_USAGE_DESCRIPTION": "your usage message",
+                "PHOTOLIBRARY_USAGE_DESCRIPTION": "your usage message"
+            }
         }
     }
 }

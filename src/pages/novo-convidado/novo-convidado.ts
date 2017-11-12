@@ -15,7 +15,8 @@ import { ModalPhoto} from '../modal-photo/modal-photo';
 
 declare var resultado: any;
 @Component({
-  templateUrl: 'novo-convidado.html'
+  templateUrl: 'novo-convidado.html',
+  providers: [Camera]  
 
 })
 export class NovoConvidado {
@@ -173,6 +174,24 @@ export class NovoConvidado {
     });
   }
 
+  abrirGaleria() {
+    
+        this.camera. getPicture({
+          sourceType: this.camera.PictureSourceType.SAVEDPHOTOALBUM,
+          destinationType: this.camera.DestinationType.DATA_URL,
+          mediaType: this.camera.MediaType.PICTURE
+        }).then((imageData) => {
+              console.debug('image ' + imageData);
+              this.base64ImageTela = 'data:image/jpeg;base64,' + imageData;
+              this.base64Image = imageData;
+          }, (err) => {
+          console.error(err);
+        }).catch(exception => {
+            console.error('Erro ao selecionar foto da galeria: ' + exception);
+            alert('Erro ao selecionar foto');
+        });
+      }
+    
  abrirModalOpcaoFoto() {
        let modal = this.modalController.create(ModalPhoto, { 'loading': this.loadingController });
 

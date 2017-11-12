@@ -6,6 +6,7 @@ import {CongregacaoProvider} from '../../providers/congregacao/congregacao-provi
 import {DetalheConvidado}  from '../detalhe-convidado/detalhe-convidado';
 import {Fire} from '../../util/fire';
 import {NovoConvidado} from '../novo-convidado/novo-convidado';
+import {Camera} from '@ionic-native/camera';
 
 @Component({
   templateUrl: 'convidado.html'
