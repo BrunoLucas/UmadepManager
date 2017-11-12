@@ -4,10 +4,9 @@ import {
    
   FormControl, FormArray, FormBuilder, FormGroup, Validators
 } from '@angular/forms';
-import { Toast} from '@ionic-native/toast';
-import {Camera} from '@ionic-native/camera';
+import {Toast} from '@ionic-native/toast';
+import {Camera, CameraOptions} from '@ionic-native/camera';
 
-declare var resultado: any;
 @Component({
   templateUrl: 'modal-photo.html'
 
@@ -15,7 +14,7 @@ declare var resultado: any;
 export class ModalPhoto {
 
  static get parameters() {
-    return [[ViewController], [NavParams], [NavController], [LoadingController]]
+    return [[ViewController], [NavParams], [NavController], [LoadingController]];
   }
 
     @ViewChild('map') mapElement: ElementRef;
@@ -23,29 +22,30 @@ export class ModalPhoto {
   public base64Image: string;
   base64ImageTela: string;
 
+ 
 
   constructor(public viewCtrl: ViewController, public navCtrl: NavController, navParams: NavParams,
     public loadingController: LoadingController,
     public toastCtrl: ToastController, public modalController: ModalController, public viewController: ViewController,
      public toast: Toast,
     public camera: Camera) {
-      this.camera = camera;
-
+      console.log('toas ' + this.toast);
+      console.log('toast controller' + this.toastCtrl);
+      console.log('modal ' + this.modalController);
+      console.log('view controller ' + this.viewController);
+      console.log('camera' + this.camera);
   }
 
+  
   ngOnInit() {
-    let loading = this.loadingController.create({
-      content: 'Aguarde'
-    });
-
   }
 
 
   selecionarFotoGaleria() {
-
         this.camera. getPicture({
             sourceType: this.camera.PictureSourceType.SAVEDPHOTOALBUM,
-            destinationType: this.camera.DestinationType.DATA_URL
+            destinationType: this.camera.DestinationType.DATA_URL,
+            mediaType: this.camera.MediaType.PICTURE
           }).then((imageData) => {
             this.base64ImageTela = 'data:image/jpeg;base64,' + imageData;
             this.base64Image = imageData;
